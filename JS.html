@@ -1,0 +1,97 @@
+
+<script src = "//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" >  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+
+<script>
+
+	$(document).ready(function () {
+
+       //alert(strData)
+
+		$('form').on('submit', function (e) {
+			e.preventDefault();
+		});
+
+		jQuery("a").click(function (e) {
+			e.preventDefault();
+		});
+
+		$('select').material_select();
+
+
+        var obj= JSON.parse(strData);
+        
+        $('#f1').val(obj.f1);
+        $('#f2').val(obj.f2);
+        $('#f3').val(obj.f3);        
+        $('#f4').val(obj.f4);
+        $('#f5').val(obj.f5);
+        $('#f6').val(obj.f6);        
+        $('#f9').val(obj.f9);
+        $('#f10').val(obj.f10);
+        $('#f12').val(obj.f12);  
+        $('#f13').val(obj.f13);
+        $('#f14').val(obj.f14);        
+                
+  Materialize.updateTextFields();      
+        
+
+		$('#b0').click(function () {
+
+		 var obj={
+            "f1":$('#f1').val(),
+            "f2":$('#f2').val(),
+            "f3":$('#f3').val(),
+            "f4":$('#f4').val(),
+            "f5":$('#f5').val(),
+            "f6":$('#f6').val(),
+            "f9":$('#f9').val(),
+            "f10":$('#f10').val(),
+            "f12":$('#f12').val(),
+            "f13":$('#f13').val(),
+            "f14":$('#f14').val(),
+ 
+            }
+
+            
+            
+
+			var myRunner = google.script.run
+				.withFailureHandler(onFailureLi)
+				.withSuccessHandler(onSuccessLi)
+				.writeDef(JSON.stringify(obj));
+		});
+
+	
+
+	});
+
+
+
+	function onSuccessLi() {
+       google.script.host.close();
+	
+	}
+
+
+
+	function onFailureLi(e) {
+
+		var x = document.getElementById("snackbarModalError")
+			x.innerHTML = e;
+		x.className = "show";
+
+		setTimeout(function () {
+			x.className = x.className.replace("show", "");
+		}, 3000);
+
+	}
+
+
+</script>
+
+
+
+

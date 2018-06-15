@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<?!= include('CSS'); ?>
+<html>
+   <head>
+
+      <title>Set Defaults</title>
+   </head>
+   <body>
+      <div class="container" id="containerID">
+         <!-- Page Content goes here -->
+         <div class="col s12 wf" id="mainID">
+            <div id="page0">
+               <form class="" id="form0" name ="form0" >
+
+
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="filename" id="f1" type="text" class="validate">
+                        <label for="f1">Filename:</label>
+                     </div>
+                  </div>
+                 <div class="row">
+                     <div class="label teal center-align">
+                        <span class="white-text">
+                           <strong>HEADER IMAGE</strong>
+                        </span>
+                     </div>
+                  </div>                 
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="alternate text" id="f2" type="text" class="validate">
+                        <label for="f2">Alternate Text:</label>
+                     </div>
+                  </div>  
+                   <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="image width" id="f3" name="f3" type="number" min="1" step="1" class="validate" >
+                        <label for="f3">Image Width:</label>
+                     </div>
+                  </div>
+                   <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="image source URL" id="f4" type="text" class="validate">
+                        <label for="f4">Image Source URL:</label>
+                     </div>
+                  </div>                                 
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="image link URL" id="f5" type="text" class="validate">
+                        <label for="f5">Image Link URL:</label>
+                     </div>
+                  </div>          
+                  <div class="row">
+                     <div class="label teal center-align">
+                        <span class="white-text">
+                           <strong>HEADER TEXT</strong>
+                        </span>
+                     </div>
+                  </div>                   
+                    <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="text top padding" id="f6" name="f6" type="number" min="1" step="1" class="validate" >
+                        <label for="f6">Text Top Padding:</label>
+                     </div>
+                  </div>   
+                  
+                   <div class="row">
+                     <div class="label teal center-align">
+                        <span class="white-text">
+                           <strong>BODY TEXT (ABOVE BODY IMAGE)</strong>
+                        </span>
+                     </div>
+                  </div>                      
+                  
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="text top padding" id="f13" type="text" class="validate">
+                        <label for="f13">Text Top Padding:</label>
+                     </div>
+                  </div>  
+          
+                  
+                  
+                  <div class="row">
+                     <div class="label teal center-align">
+                        <span class="white-text">
+                           <strong>BODY IMAGE</strong>
+                        </span>
+                     </div>
+                  </div>                      
+                  
+                  <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="image alternate text" id="f9" type="text" class="validate">
+                        <label for="f9">Image Alternate Text:</label>
+                     </div>
+                  </div>  
+                    <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="image width" id="f10" name="f10" type="number" min="1" step="1" class="validate" >
+                        <label for="f10">Image Width:</label>
+                     </div>
+                  </div>
+                   <div class="row">
+                     <div class="input-field col s12">
+                        <input placeholder="image link URL" id="f12" type="text" class="validate">
+                        <label for="f12">Image Link URL:</label>
+                     </div>
+                  </div>   
+                  <br>
+                
+
+                
+                
+                
+                
+                  <br>
+                  <div class="row">
+                     <div class="">
+                        <button class="btn waves-effect waves-light  btn-large right pink accent-4 fullWidth" type="button"  id="b0" name="b0" ><b>Save</b> </button>
+                     </div>
+                  </div>
+                  <br>
+               </form>
+            </div>
+
+            <br>
+            <div id="snackbarModalError" >Modal error</div>
+         </div>
+      </div>
+   </body>
+</html>
+<script>
+ var strData=<?= data ?>;
+</script>
+<?!= include('JS'); ?>
