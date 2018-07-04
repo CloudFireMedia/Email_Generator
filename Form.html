@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title></title>
+
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		* {
+			outline: none;
+		}
+
+		fieldset {
+			border: 1px solid #c5c5c5;
+			border-radius: 3px;
+			margin: 0 0 15px;
+			padding: 10px 10px 0;
+		}
+
+		legend {
+			font-weight: bold;
+		}
+
+		.row {
+			margin: 0 0 10px;
+		}
+
+		label {
+			display: inline-block;
+			text-align: right;
+			width: 110px;
+			padding-right: 10px;
+		}
+
+		.ui-textfield {
+			background: #fff;
+			color: #454545;
+			border: 1px solid #c5c5c5;
+			border-radius: 3px;
+			width: 335px;
+			margin: 0;
+			padding: .4em;
+			cursor: text;
+		}
+
+		#save-params-btn {
+			width: 100%;
+			padding: 10px 0;
+		}
+	</style>
+</head>
+<body>
+	<form id="params">
+		<fieldset>
+			<legend>Header Image</legend>
+			<div class="row">
+				<label for="header-img-title">Title</label>
+				<input id="header-img-title" name="header-img-title" class="ui-widget ui-textfield" type="text" placeholder="Width" value="<?= content.header.img.title ?>"/>
+			</div>
+			<div class="row">
+				<label for="header-img-width">Width</label>
+				<input id="header-img-width" name="header-img-width" type="number" placeholder="Title" value="<?= content.header.img.width ?>"/>
+			</div>
+			<div class="row">
+				<label for="header-img-src">Source URL</label>
+				<input id="header-img-src" name="header-img-src" class="ui-widget ui-textfield" type="text" placeholder="Source URL" value="<?= content.header.img.src ?>"/>
+			</div>
+			<div class="row">
+				<label for="header-img-link">Link URL</label>
+				<input id="header-img-link" name="header-img-link" class="ui-widget ui-textfield" type="text" placeholder="Link URL" value="<?= content.header.img.link ?>"/>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Header Text</legend>
+			<div class="row">
+				<label for="header-title-top">Top padding</label>
+				<input id="header-title-top" name="header-title-top" type="number" placeholder="Title" value="<?= content.header.title.top ?>"/>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Body Heading</legend>
+			<div class="row">
+				<label for="body-heading-top">Top padding</label>
+				<input id="body-heading-top" name="body-heading-top" type="number" placeholder="Title" value="<?= content.body.heading.top ?>"/>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Body Image</legend>
+			<div class="row">
+				<label for="body-img-title">Title</label>
+				<input id="body-img-title" name="body-img-title" class="ui-widget ui-textfield" type="text" placeholder="Title" value="<?= content.body.img.title ?>"/>
+			</div>
+			<div class="row">
+				<label for="body-img-width">Width</label>
+				<input id="header-img-width" name="body-img-width" type="number" placeholder="Width" value="<?= content.body.img.width ?>"/>
+			</div>
+			<div class="row">
+				<label for="body-img-src">Source URL</label>
+				<input id="header-img-src" name="body-img-src" class="ui-widget ui-textfield" type="text" placeholder="Source URL" value="<?= content.body.img.src ?>"/>
+			</div>
+			<div class="row">
+				<label for="body-img-link">Link URL</label>
+				<input id="header-img-link" name="body-img-link" class="ui-widget ui-textfield" type="text" placeholder="Link URL" value="<?= content.body.img.link ?>"/>
+			</div>
+		</fieldset>
+		<button id="save-params-btn">Save</button>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+	<script>
+		$(function() {
+			$("input[type='number']").spinner();
+			$('#save-params-btn').button();
+
+			$('#save-params-btn').on('click', function(e) {
+				e.preventDefault();
+
+				var params = $('#params').serializeArray(),
+					values = {};
+
+				$.each(params, function(i, param) {
+					values[param.name] = String(param.value).trim();
+				});
+
+				google.script.run
+					.withFailureHandler(onSaveFailure)
+					.withSuccessHandler(onSaveSuccess)
+					.setDefaultValues({
+						'header': {
+							'img': {
+								'title': values['header-img-title'],
+								'width': values['header-img-width'],
+								'src': values['header-img-src'],
+								'link': values['header-img-link']
+							},
+							'title': {
+								'top': values['header-title-top']
+							}
+						},
+						'body': {
+							'heading': {
+								'top': values['body-heading-top']
+							},
+							'img': {
+								'title': values['body-img-title'],
+								'width': values['body-img-width'],
+								'src': values['body-img-src'],
+								'link': values['body-img-link']
+							}
+						}
+					});
+			});
+
+			$('#params').on('submit', function(e) {
+				e.preventDefault();
+			});
+
+			function onSaveSuccess() {
+				google.script.host.close();
+			}
+
+			function onSaveFailure(e) {
+				//
+			}
+		});
+	</script>
+</body>
+</html>
