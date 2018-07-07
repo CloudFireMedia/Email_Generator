@@ -1,3 +1,6 @@
+var SCRIPT_NAME = 'F1_Email_Generator',
+	SCRIPT_VERSION = 'v1.1.dev_msk';
+
 function onOpen() {
 	var ui = SpreadsheetApp.getUi();
 
@@ -9,12 +12,13 @@ function onOpen() {
 		.addToUi();
 }
 
-function createMailFromHtml(html) {
-	var ss = SpreadsheetApp.getActive(),
+function showMailPopup() {
+	var ui = SpreadsheetApp.getUi(),
+		ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Responses'),
 		activeRange = sheet.getActiveRange(),
 		values = sheet.getRange(1, activeRange.getColumn(), activeRange.getNumRows()).getValues(),
-		mail = HtmlService.createTemplateFromFile(html),
+		mail = HtmlService.createTemplateFromFile('Mail.html'),
 		content = {
 			'header': {
 				'img': {
@@ -59,7 +63,15 @@ function createMailFromHtml(html) {
 			nameParts = name.split(' ');
 
 		if (nameParts.length == 2) {
-			content.footer.staff.push(getStaffObject(nameParts[0], nameParts[1]));
+			var person = getStaffObject(nameParts[0], nameParts[1]);
+
+			if (content.footer.unsubscribe.toUpperCase() == person.team.toUpperCase()) {
+				content.footer.staff.push(person);
+			} else {
+				ui.alert('Error', (person.name + ' not in ' + content.footer.unsubscribe + '!'), ui.ButtonSet.OK);
+
+				return;
+			}
 		}
 	}
 
@@ -71,33 +83,24 @@ function createMailFromHtml(html) {
 
 	mail.content = content;
 
-	return mail.evaluate()
-				.setWidth(800)
-				.setHeight(640);
-}
+	var html = mail.evaluate()
+			   .setWidth(800)
+			   .setHeight(640);
 
-function showMailPopup() {
-	var ui = SpreadsheetApp.getUi(),
-		mail = createMailFromHtml('Mail.html');
-
-	ui.showModalDialog(mail, 'Generated mail');
-}
-
-function createFormFromHtml(html) {
-	var form = HtmlService.createTemplateFromFile(html);
-
-	form.content = getDefaultValues();
-
-	return form.evaluate()
-				.setWidth(500)
-				.setHeight(640);
+	ui.showModalDialog(html, 'Generated mail');
 }
 
 function showFormPopup() {
 	var ui = SpreadsheetApp.getUi(),
-		form = createFormFromHtml('Form.html');
+		form = HtmlService.createTemplateFromFile('Form.html');
 
-	ui.showModalDialog(form, 'Set Defaults');
+	form.content = getDefaultValues();
+
+	var html = form.evaluate()
+				.setWidth(500)
+				.setHeight(640);
+
+	ui.showModalDialog(html, 'Set Defaults');
 }
 
 function deleteColumns() {
@@ -180,12 +183,15 @@ function getStaffObject(firstname, lastname) {
 		person = {
 			'name': firstname + ' ' + lastname,
 			'title': '',
+			'team': '',
 			'photo': getStaffImage(firstname, lastname)
 		};
 
 	for (var i = 2; i < values.length; i++) {
 		if ((values[i][0].toUpperCase() == firstname.toUpperCase()) && (values[i][1].toUpperCase() == lastname.toUpperCase())) {
 			person.title = values[i][4];
+			person.team = values[i][11];
+
 			break;
 		}
 	}

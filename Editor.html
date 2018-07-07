@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet"/>
+</head>
+<body>
+	<div id="mail">
+		<table style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border: 0px solid #FFFFFF; border-collapse: collapse !important;" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tbody>
+				<tr>
+					<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #ffffff; font-family: Lato, Helvetica; font-size: 20px; font-weight: bold; line-height: 100%; padding-top: 40px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; width: 560px; text-align: center; vertical-align: middle;">
+						<a href="<?= content.header.img.link ?>">
+							<img style="-ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none;" title="<?= content.header.img.title ?>" src="<?= content.header.img.src ?>" alt="<?= content.header.img.title ?>" width="<?= content.header.img.width ?>"/>
+						</a>
+					</td>
+				</tr>
+				<? if (content.header.title.text != '') { ?>
+				<tr>
+					<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #fffff; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; padding-top: <?= content.header.title.top ?>px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; width: 560px; text-align: left;" valign="top">
+						<p style="margin: 0px; display: block; font-family: Lato, Helvetica; font-size: 14px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; text-align: left; color: #484848 !important;"><?= content.header.title.text ?></p>
+					</td>
+				</tr>
+				<? } ?>
+				<? if (content.body.heading.text != '') { ?>
+				<tr>
+					<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #fffff; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; padding-top: <?= content.body.heading.top ?>px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; width: 560px; text-align: left;" valign="top">
+						<? for (var i = 0; i < content.body.heading.paragraphs.length; i++) {
+								var paragraph = content.body.heading.paragraphs[i]; ?>
+						<p style="margin: 15px 0; text-align: left;"><?= paragraph ?></p>
+						<? } ?>
+					</td>
+				</tr>
+				<? } ?>
+				<? if (content.body.img.src != '') { ?>
+				<tr>
+					<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #ffffff; font-family: Lato, Helvetica; font-size: 20px; font-weight: bold; line-height: 100%; padding-top: 40px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; width: 560px; text-align: center; vertical-align: middle;">
+						<a href="<?= content.body.img.link ?>">
+							<img style="-ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none;" title="<?= content.body.img.title ?>" src="<?= content.body.img.src ?>" alt="<?= content.body.img.title ?>" width="<?= content.body.img.width ?>"/>
+						</a>
+					</td>
+				</tr>
+				<? } ?>
+				<? if (content.body.subheading.text != '') { ?>
+				<tr>
+					<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #fffff; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; padding-top: <?= content.body.subheading.top ?>px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; width: 560px; text-align: left;" valign="top">
+						<? for (var i = 0; i < content.body.subheading.paragraphs.length; i++) {
+								var paragraph = content.body.subheading.paragraphs[i]; ?>
+						<p style="margin: 15px 0; text-align: left;"><?= paragraph ?></p>
+						<? } ?>
+					</td>
+				</tr>
+				<? } ?>
+				<? if (content.body.box.text != '') { ?>
+				<tr>
+					<td style="padding-top: 5px; padding-bottom: 5px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; padding-right: 20px; padding-left: 20px; width: 560px; text-align: center;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%">
+							<tbody>
+								<tr>
+									<td style="background-color: #f4f1f4; padding-top: 10px; padding-bottom: 10px; padding-right: 15px; padding-left: 20px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left;">
+										<? for (var i = 0; i < content.body.box.paragraphs.length; i++) {
+												var paragraph = content.body.box.paragraphs[i]; ?>
+										<p style="margin: 15px 0; text-align: left;"><?= paragraph ?></p>
+										<? } ?>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<? } ?>
+				<? for (var i = 0; i < content.footer.staff.length; i++) {
+						var employee = content.footer.staff[i]; ?>
+				<tr>
+					<td style="padding-top: 5px; padding-bottom: 5px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #ffffff; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; padding-right: 20px; padding-left: 20px; width: 560px; text-align: left;">
+						<table border="0" cellspacing="0" cellpadding="0" align="left">
+							<tbody>
+								<tr>
+									<td style="padding-top: 5px; padding-bottom: 10px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #ffffff; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; padding-right: 0px; padding-left: 0px; text-align: left;">
+										<img src="<?= employee.photo ?>" title="<?= employee.title ?>" alt="<?= employee.title ?>" width="90" height="90" border="0"/>
+									</td>
+									<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #fffff; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; padding-top: 0px; padding-right: 20px; padding-bottom: 0px; padding-left: 10px; text-align: left;" valign="center">
+										<p style="margin: 0px; display: block; font-family: Lato, Helvetica; font-size: 14px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; text-align: left; color: #484848 !important;">
+											<strong><?= employee.name ?></strong>
+										</p>
+										<p style="margin: 0px; display: block; font-family: Lato, Helvetica; font-size: 14px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; text-align: left; color: #484848 !important;"><?= employee.title ?></p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<? } ?>
+				<tr>
+					<td style="padding-top: 20px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #808080; font-family: Lato, Helvetica; font-size: 10px; line-height: 150%; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; width: 560px; text-align: center;" align="center" valign="top">
+
+						<img style="vertical-align: middle;" src="http://www.christchurchnashville.org/wp-content/uploads/2016/10/christchurch_logo_Black_JustCross.png" alt="CCN logo" width="25" />
+					</td>
+				</tr>
+				<tr>
+					<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #fffff; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; width: 560px; text-align: center; padding-right: 20px; padding-bottom: 0px; padding-left: 20px;" valign="center">
+						<p style="margin: 0; display: block; font-family: Lato, Helvetica; font-size: 14px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; margin-top: 0; margin-right: 0; margin-bottom: 0px; margin-left: 0; text-align: center; color: #484848 !important;">
+							<strong>Christ Church Nashville</strong>
+						</p>
+						<p style="margin: 0; display: block; font-family: Lato, Helvetica; font-size: 12px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; margin-top: 0; margin-right: 0; margin-bottom: 0px; margin-left: 0; text-align: center; color: #484848 !important;">15354 Old Hickory Blvd
+						</p>
+						<p style="margin: 0; display: block; font-family: Lato, Helvetica; font-size: 12px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; margin-top: 0; margin-right: 0; margin-bottom: 0px; margin-left: 0; text-align: center; color: #484848 !important;">Nashville, TN 37211
+						</p>
+						<p style="margin: 0; display: block; font-family: Lato, Helvetica; font-size: 12px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; margin-top: 0; margin-right: 0; margin-bottom: 0px; margin-left: 0; text-align: center; color: #484848 !important;">(615) 834-6171
+						</p>
+						<p style="margin: 0; display: block; font-family: Lato, Helvetica; font-size: 12px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; margin-top: 0; margin-right: 0; margin-bottom: 0px; margin-left: 0; text-align: center; color: #484848 !important;">
+							<a href="http://www.christchurchnashville.org/">www.christchurchnashville.org</a>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border: 0px solid #FFFFFF; border-collapse: collapse !important;" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tbody>
+				<tr>
+					<td style="padding-top: 20px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #808080; font-family: Lato, Helvetica; font-size: 10px; line-height: 150%; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; width: 560px; text-align: center;" align="center" valign="top">
+						<p style="margin: 0; display: block; font-family: Lato, Helvetica; font-size: 12px; font-style: normal; font-weight: normal; line-height: 1.5; letter-spacing: normal; margin-top: 0; margin-right: 0; margin-bottom: 0px; margin-left: 0; text-align: center; color: #484848 !important; padding-top: 50px; padding-bottom: 20px;">
+							If you do not wish to receive Executive Team emails at Christ Church Nashville, <a href="mailto:info@ccnash.org?subject=Unsubscribe me from <?= content.footer.unsubscribe ?> Emails">click here</a>. To unsubscribe from <strong>all</strong> CCN emails, click below.
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#mail').summernote();
+		});
+	</script>
+</body>
+</html>
