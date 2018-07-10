@@ -1,5 +1,5 @@
 var SCRIPT_NAME = 'F1_Email_Generator',
-	SCRIPT_VERSION = 'v1.1.dev_msk';
+	SCRIPT_VERSION = 'v1.2.dev_msk';
 
 function onOpen() {
 	var ui = SpreadsheetApp.getUi();
@@ -44,11 +44,11 @@ function showMailPopup() {
 					'link': String(values[11][0]).trim()
 				},
 				'subheading': {
-					'top': 0,
+					'top': 15,
 					'text': String(values[12][0]).trim()
 				},
 				'box': {
-					'top': 0,
+					'top': 15,
 					'text': String(values[13][0]).trim()
 				}
 			},
@@ -65,13 +65,15 @@ function showMailPopup() {
 		if (nameParts.length == 2) {
 			var person = getStaffObject(nameParts[0], nameParts[1]);
 
-			if (content.footer.unsubscribe.toUpperCase() == person.team.toUpperCase()) {
-				content.footer.staff.push(person);
-			} else {
-				ui.alert('Error', (person.name + ' not in ' + content.footer.unsubscribe + '!'), ui.ButtonSet.OK);
+			if (content.footer.unsubscribe.toUpperCase() != person.team.toUpperCase()) {
+				var resp = ui.alert('Warning', (person.name + ' is not in ' + content.footer.unsubscribe + '. Do you wish to continue?'), ui.ButtonSet.YES_NO);
 
-				return;
+				if (resp == ui.Button.NO) {
+					return;
+				}
 			}
+
+			content.footer.staff.push(person);
 		}
 	}
 
