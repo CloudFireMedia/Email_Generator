@@ -1,5 +1,5 @@
 var SCRIPT_NAME = 'F1_Email_Generator',
-	SCRIPT_VERSION = 'v1.2.dev_msk';
+	SCRIPT_VERSION = 'v1.2';
 
 function onOpen() {
 	var ui = SpreadsheetApp.getUi();
