@@ -1,5 +1,5 @@
 var SCRIPT_NAME = 'F1_Email_Generator',
-	SCRIPT_VERSION = 'v1.2';
+	SCRIPT_VERSION = 'v1.3.dev_msk';
 
 function onOpen() {
 	var ui = SpreadsheetApp.getUi();
@@ -35,20 +35,23 @@ function showMailPopup() {
 			'body': {
 				'heading': {
 					'top': String(values[6][0]).trim(),
+					'bottom': '',
 					'text': String(values[7][0]).trim()
 				},
 				'img': {
 					'alt': String(values[8][0]).trim(),
 					'width': String(values[9][0]).trim(),
 					'src': String(values[10][0]).trim(),
-					'link': String(values[11][0]).trim()
+					'link': String(values[11][0]).trim(),
+					'top': '',
+					'bottom': ''
 				},
 				'subheading': {
-					'top': 15,
 					'text': String(values[12][0]).trim()
 				},
 				'box': {
-					'top': 15,
+					'top': '',
+					'bottom': '',
 					'text': String(values[13][0]).trim()
 				}
 			},
@@ -99,7 +102,7 @@ function showFormPopup() {
 	form.content = getDefaultValues();
 
 	var html = form.evaluate()
-				.setWidth(500)
+				.setWidth(520)
 				.setHeight(640);
 
 	ui.showModalDialog(html, 'Set Defaults');
@@ -126,17 +129,20 @@ function setDefaultValues(values) {
 	sheet.getRange('D5').setValue(values.header.title.top);
 
 	sheet.getRange('D7').setValue(values.body.heading.top);
+	sheet.getRange('D9').setValue(values.body.heading.bottom);
 
-	sheet.getRange('D9').setValue(values.body.img.title);
-	sheet.getRange('D10').setValue(values.body.img.width);
-	sheet.getRange('D11').setValue(values.body.img.src);
-	sheet.getRange('D12').setValue(values.body.img.link);
+	sheet.getRange('D10').setValue(values.body.img.title);
+	sheet.getRange('D11').setValue(values.body.img.width);
+	sheet.getRange('D12').setValue(values.body.img.src);
+	sheet.getRange('D13').setValue(values.body.img.link);
+	sheet.getRange('D14').setValue(values.body.img.top);
+	sheet.getRange('D15').setValue(values.body.img.bottom);
 }
 
 function getDefaultValues() {
 	var ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Defaults'),
-		values = sheet.getRange('D1:D18').getValues();
+		values = sheet.getRange('D1:D22').getValues();
 
 	return {
 		'header': {
@@ -154,26 +160,29 @@ function getDefaultValues() {
 		'body': {
 			'heading': {
 				'top': String(values[6][0]).trim(),
+				'bottom': String(values[8][0]).trim(),
 				'text': String(values[7][0]).trim()
 			},
 			'img': {
-				'title': String(values[8][0]).trim(),
-				'width': String(values[9][0]).trim(),
-				'src': String(values[10][0]).trim(),
-				'link': String(values[11][0]).trim()
+				'title': String(values[9][0]).trim(),
+				'width': String(values[10][0]).trim(),
+				'src': String(values[11][0]).trim(),
+				'link': String(values[12][0]).trim(),
+				'top': String(values[13][0]).trim(),
+				'bottom': String(values[14][0]).trim()
 			},
 			'subheading': {
-				'top': 0,
-				'text': String(values[12][0]).trim()
+				'text': String(values[15][0]).trim()
 			},
 			'box': {
-				'top': 0,
-				'text': String(values[13][0]).trim()
+				'top': 15,
+				'bottom': String(values[17][0]).trim(),
+				'text': String(values[16][0]).trim()
 			}
 		},
 		'footer': {
 			'staff': [],
-			'unsubscribe': ''
+			'unsubscribe': String(values[21][0]).trim()
 		}
 	};
 }

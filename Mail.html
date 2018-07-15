@@ -24,17 +24,17 @@
 				<? } ?>
 				<? if (content.body.heading.text != '') { ?>
 				<tr>
-					<td style="padding: <?= content.body.heading.top ?>px 20px 0;">
+					<td style="padding: <?= content.body.heading.top ?>px 20px <?= content.body.heading.bottom ?>px;">
 						<? for (var i = 0; i < content.body.heading.paragraphs.length; i++) {
 								var paragraph = content.body.heading.paragraphs[i]; ?>
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 15px;"><?= paragraph ?></p>
+						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.heading.paragraphs.length - 1)) ? 15 : 0 ?>px;"><?= paragraph ?></p>
 						<? } ?>
 					</td>
 				</tr>
 				<? } ?>
 				<? if (content.body.img.src != '') { ?>
 				<tr>
-					<td style="padding: 20px;">
+					<td style="padding: <?= content.body.img.top ?>px 20px <?= content.body.img.bottom ?>px;">
 						<a href="<?= content.body.img.link ?>" style="display: block; line-height: 100%; outline: none; text-decoration: none;">
 							<img style="-ms-interpolation-mode: bicubic; border: 0; max-width: 560px; height: auto;" title="<?= content.body.img.title ?>" src="<?= content.body.img.src ?>" alt="<?= content.body.img.title ?>" width="<?= content.body.img.width ?>"/>
 						</a>
@@ -43,24 +43,24 @@
 				<? } ?>
 				<? if (content.body.subheading.text != '') { ?>
 				<tr>
-					<td style="padding: <?= content.body.subheading.top ?>px 20px 0;">
+					<td style="padding: 0 20px;">
 						<? for (var i = 0; i < content.body.subheading.paragraphs.length; i++) {
 								var paragraph = content.body.subheading.paragraphs[i]; ?>
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 15px;"><?= paragraph ?></p>
+						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.subheading.paragraphs.length - 1)) ? 15 : 0 ?>px;"><?= paragraph ?></p>
 						<? } ?>
 					</td>
 				</tr>
 				<? } ?>
 				<? if (content.body.box.text != '') { ?>
 				<tr>
-					<td style="padding: 0 20px;">
+					<td style="padding: <?= content.body.box.top ?>px 20px <?= content.body.box.bottom ?>px;">
 						<table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
 							<tbody>
 								<tr>
-									<td style="background-color: #f4f1f4; padding: 15px 20px 0;">
+									<td style="background-color: #f4f1f4; padding: 15px 20px;">
 										<? for (var i = 0; i < content.body.box.paragraphs.length; i++) {
 												var paragraph = content.body.box.paragraphs[i]; ?>
-										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 15px;"><?= paragraph ?></p>
+										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.box.paragraphs.length - 1)) ? 15 : 0 ?>px;"><?= paragraph ?></p>
 										<? } ?>
 									</td>
 								</tr>
@@ -72,7 +72,7 @@
 				<? for (var i = 0; i < content.footer.staff.length; i++) {
 						var employee = content.footer.staff[i]; ?>
 				<tr>
-					<td style="padding: 15px 20px;">
+					<td style="padding: 0 20px <?= (i < (content.footer.staff.length - 1)) ? 15 : 0 ?>px;">
 						<table border="0" cellspacing="0" cellpadding="0">
 							<tbody>
 								<tr>
