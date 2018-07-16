@@ -225,22 +225,24 @@ function getStaffImage(firstname, lastname) {
 }
 
 function searchFileInFolder(folders, filename) {
+	var file;
+
 	while (folders.hasNext()) {
 		var folder = folders.next(),
 			files = folder.getFilesByName(filename);
 
 		if (files.hasNext()) {
-			return files.next();
+			file = files.next();
 		}
 
 		var subfolders = folder.getFolders();
 
 		if (subfolders.hasNext()) {
-			return searchFileInFolder(subfolders, filename);
+			file = searchFileInFolder(subfolders, filename);
 		}
 	}
 
-	return null;
+	return file;
 }
 
 function mergeObjects(obj, src) {
