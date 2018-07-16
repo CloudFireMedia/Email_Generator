@@ -18,7 +18,7 @@
 				<? if (content.header.title.text != '') { ?>
 				<tr>
 					<td style="padding: <?= content.header.title.top ?>px 20px 0;">
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 18px; font-weight: bold; line-height: 150%; text-align: left; margin: 0;"><?= content.header.title.text ?></p>
+						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 18px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0;"><?= content.header.title.text ?></p>
 					</td>
 				</tr>
 				<? } ?>
@@ -27,7 +27,7 @@
 					<td style="padding: <?= content.body.heading.top ?>px 20px <?= content.body.heading.bottom ?>px;">
 						<? for (var i = 0; i < content.body.heading.paragraphs.length; i++) {
 								var paragraph = content.body.heading.paragraphs[i]; ?>
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.heading.paragraphs.length - 1)) ? 15 : 0 ?>px;"><?= paragraph ?></p>
+						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.heading.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><?= paragraph ?></p>
 						<? } ?>
 					</td>
 				</tr>
@@ -46,7 +46,7 @@
 					<td style="padding: 0 20px;">
 						<? for (var i = 0; i < content.body.subheading.paragraphs.length; i++) {
 								var paragraph = content.body.subheading.paragraphs[i]; ?>
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.subheading.paragraphs.length - 1)) ? 15 : 0 ?>px;"><?= paragraph ?></p>
+						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.subheading.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><?= paragraph ?></p>
 						<? } ?>
 					</td>
 				</tr>
@@ -60,7 +60,7 @@
 									<td style="background-color: #f4f1f4; padding: 15px 20px;">
 										<? for (var i = 0; i < content.body.box.paragraphs.length; i++) {
 												var paragraph = content.body.box.paragraphs[i]; ?>
-										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.box.paragraphs.length - 1)) ? 15 : 0 ?>px;"><?= paragraph ?></p>
+										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.box.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><?= paragraph ?></p>
 										<? } ?>
 									</td>
 								</tr>
@@ -80,8 +80,8 @@
 										<img src="<?= employee.photo ?>" title="<?= employee.title ?>" alt="<?= employee.title ?>" width="90" height="90" border="0"/>
 									</td>
 									<td style="padding: 0 10px;" valign="center">
-										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; font-weight: bold; line-height: 150%; text-align: left; margin: 0;"><?= employee.name ?></p>
-										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0;"><?= employee.title ?></p>
+										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0;"><?= employee.name ?></p>
+										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0; padding: 0;"><?= employee.title ?></p>
 									</td>
 								</tr>
 							</tbody>
@@ -96,7 +96,7 @@
 				</tr>
 				<tr>
 					<td style="padding: 0 20px;" valign="center">
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 12px; line-height: 150%; line-height: 150%; text-align: center; margin: 0;">
+						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 12px; line-height: 150%; line-height: 150%; text-align: center; margin: 0; padding: 0;">
 							<strong>Christ Church Nashville</strong><br/>
 							15354 Old Hickory Blvd<br>
 							Nashville, TN 37211<br>
