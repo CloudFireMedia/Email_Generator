@@ -211,9 +211,8 @@ function getStaffObject(firstname, lastname) {
 }
 
 function getStaffImage(firstname, lastname) {
-	var folders = DriveApp.getFolderById('1jGF-Md5vsJHP41FuUZ8XWtcSHKvRn87i')
-						  .getFoldersByName(lastname + ', ' + firstname),
-		imgFile = searchFileInFolder(folders, 'BubbleHead.png');
+	var folders = DriveApp.getFoldersByName(lastname + ', ' + firstname),
+		imgFile = searchFileInFolder(folders, 'BubbleHead');
 
 	if (imgFile != null) {
 		var fileId = imgFile.getId();
@@ -229,10 +228,11 @@ function searchFileInFolder(folders, filename) {
 
 	while (folders.hasNext()) {
 		var folder = folders.next(),
-			files = folder.getFilesByName(filename);
+			files = folder.searchFiles('title contains "' + filename + '"');
 
 		if (files.hasNext()) {
 			file = files.next();
+			break;
 		}
 
 		var subfolders = folder.getFolders();
