@@ -224,25 +224,26 @@ function getStaffImage(firstname, lastname) {
 }
 
 function searchFileInFolder(folders, filename) {
-	var file;
-
 	while (folders.hasNext()) {
 		var folder = folders.next(),
 			files = folder.searchFiles('title contains "' + filename + '"');
 
 		if (files.hasNext()) {
-			file = files.next();
-			break;
+			return files.next();
 		}
 
 		var subfolders = folder.getFolders();
 
 		if (subfolders.hasNext()) {
-			file = searchFileInFolder(subfolders, filename);
+			var file = searchFileInFolder(subfolders, filename);
+
+			if (file != null) {
+				return file;
+			}
 		}
 	}
 
-	return file;
+	return;
 }
 
 function mergeObjects(obj, src) {
