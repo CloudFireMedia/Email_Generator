@@ -89,8 +89,8 @@ function showMailPopup() {
 	mail.content = content;
 
 	var html = mail.evaluate()
-			   .setWidth(800)
-			   .setHeight(640);
+				   .setWidth(800)
+				   .setHeight(640);
 
 	ui.showModalDialog(html, 'Generated mail');
 }
@@ -102,8 +102,8 @@ function showFormPopup() {
 	form.content = getDefaultValues();
 
 	var html = form.evaluate()
-				.setWidth(520)
-				.setHeight(640);
+				   .setWidth(520)
+				   .setHeight(640);
 
 	ui.showModalDialog(html, 'Set Defaults');
 }
