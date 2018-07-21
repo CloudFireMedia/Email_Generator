@@ -1,5 +1,5 @@
 var SCRIPT_NAME = 'F1_Email_Generator',
-	SCRIPT_VERSION = 'v1.3.dev_msk';
+	SCRIPT_VERSION = 'v1.4';
 
 function onOpen() {
 	var ui = SpreadsheetApp.getUi();
@@ -35,33 +35,33 @@ function showMailPopup() {
 			'body': {
 				'heading': {
 					'top': String(values[6][0]).trim(),
-					'bottom': '',
+					'bottom': String(values[8][0]).trim(),
 					'text': String(values[7][0]).trim()
 				},
 				'img': {
-					'alt': String(values[8][0]).trim(),
-					'width': String(values[9][0]).trim(),
-					'src': String(values[10][0]).trim(),
-					'link': String(values[11][0]).trim(),
-					'top': '',
-					'bottom': ''
+					'title': String(values[9][0]).trim(),
+					'width': String(values[10][0]).trim(),
+					'src': String(values[11][0]).trim(),
+					'link': String(values[12][0]).trim(),
+					'top': String(values[13][0]).trim(),
+					'bottom': String(values[14][0]).trim()
 				},
 				'subheading': {
-					'text': String(values[12][0]).trim()
+					'text': String(values[15][0]).trim()
 				},
 				'box': {
-					'top': '',
-					'bottom': '',
-					'text': String(values[13][0]).trim()
+					'top': 15,
+					'bottom': String(values[17][0]).trim(),
+					'text': String(values[16][0]).trim()
 				}
 			},
 			'footer': {
 				'staff': [],
-				'unsubscribe': String(values[17][0]).trim()
+				'unsubscribe': String(values[21][0]).trim()
 			}
 		};
 
-	for (var i = 14; i <= 16; i++) {
+	for (var i = 18; i <= 20; i++) {
 		var name = String(values[i][0]).trim(),
 			nameParts = name.split(' ');
 
@@ -89,8 +89,8 @@ function showMailPopup() {
 	mail.content = content;
 
 	var html = mail.evaluate()
-			   .setWidth(800)
-			   .setHeight(640);
+				   .setWidth(800)
+				   .setHeight(640);
 
 	ui.showModalDialog(html, 'Generated mail');
 }
@@ -102,8 +102,8 @@ function showFormPopup() {
 	form.content = getDefaultValues();
 
 	var html = form.evaluate()
-				.setWidth(520)
-				.setHeight(640);
+				   .setWidth(520)
+				   .setHeight(640);
 
 	ui.showModalDialog(html, 'Set Defaults');
 }
@@ -235,11 +235,15 @@ function searchFileInFolder(folders, filename) {
 		var subfolders = folder.getFolders();
 
 		if (subfolders.hasNext()) {
-			return searchFileInFolder(subfolders, filename);
+			var file = searchFileInFolder(subfolders, filename);
+
+			if (file != null) {
+				return file;
+			}
 		}
 	}
 
-	return null;
+	return;
 }
 
 function mergeObjects(obj, src) {
