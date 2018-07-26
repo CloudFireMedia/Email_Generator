@@ -1,9 +1,5 @@
 var SCRIPT_NAME = 'F1_Email_Generator',
-<<<<<<< HEAD
-	SCRIPT_VERSION = 'v1.3';
-=======
 	SCRIPT_VERSION = 'v1.4';
->>>>>>> v1.4.dev_msk
 
 function onOpen() {
 	var ui = SpreadsheetApp.getUi();
@@ -26,46 +22,55 @@ function showMailPopup() {
 		content = {
 			'header': {
 				'img': {
-					'title': String(values[0][0]).trim(),
-					'width': String(values[1][0]).trim(),
-					'src': String(values[2][0]).trim(),
-					'link': String(values[3][0]).trim()
+					'top': String(values[0][0]).trim(),
+					'title': String(values[1][0]).trim(),
+					'width': String(values[2][0]).trim(),
+					'src': String(values[3][0]).trim(),
+					'link': String(values[4][0]).trim(),
+					'bottom': String(values[5][0]).trim()
 				},
 				'title': {
-					'top': String(values[4][0]).trim(),
-					'text': String(values[5][0]).trim()
+					'top': String(values[6][0]).trim(),
+					'text': String(values[7][0]).trim(),
+					'bottom': String(values[8][0]).trim()
 				}
 			},
 			'body': {
 				'heading': {
-					'top': String(values[6][0]).trim(),
-					'bottom': String(values[8][0]).trim(),
-					'text': String(values[7][0]).trim()
+					'top': String(values[9][0]).trim(),
+					'text': String(values[10][0]).trim(),
+					'bottom': String(values[11][0]).trim()
 				},
 				'img': {
-					'title': String(values[9][0]).trim(),
-					'width': String(values[10][0]).trim(),
-					'src': String(values[11][0]).trim(),
-					'link': String(values[12][0]).trim(),
-					'top': String(values[13][0]).trim(),
-					'bottom': String(values[14][0]).trim()
+					'top': String(values[12][0]).trim(),
+					'title': String(values[13][0]).trim(),
+					'width': String(values[14][0]).trim(),
+					'src': String(values[15][0]).trim(),
+					'link': String(values[16][0]).trim(),
+					'bottom': String(values[17][0]).trim()
 				},
 				'subheading': {
-					'text': String(values[15][0]).trim()
+					'top': String(values[18][0]).trim(),
+					'text': String(values[19][0]).trim(),
+					'bottom': String(values[20][0]).trim()
 				},
 				'box': {
-					'top': 15,
-					'bottom': String(values[17][0]).trim(),
-					'text': String(values[16][0]).trim()
+					'top': String(values[21][0]).trim(),
+					'text': String(values[22][0]).trim(),
+					'bottom': String(values[23][0]).trim()
 				}
 			},
 			'footer': {
-				'staff': [],
-				'unsubscribe': String(values[21][0]).trim()
+				'staff': {
+					'top': String(values[24][0]).trim(),
+					'workers': [],
+					'bottom': String(values[28][0]).trim()
+				},
+				'unsubscribe': String(values[29][0]).trim()
 			}
 		};
 
-	for (var i = 18; i <= 20; i++) {
+	for (var i = 25; i <= 27; i++) {
 		var name = String(values[i][0]).trim(),
 			nameParts = name.split(' ');
 
@@ -80,7 +85,7 @@ function showMailPopup() {
 				}
 			}
 
-			content.footer.staff.push(person);
+			content.footer.staff.workers.push(person);
 		}
 	}
 
@@ -146,47 +151,56 @@ function setDefaultValues(values) {
 function getDefaultValues() {
 	var ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Defaults'),
-		values = sheet.getRange('D1:D22').getValues();
+		values = sheet.getRange('D1:D30').getValues();
 
 	return {
 		'header': {
 			'img': {
-				'title': String(values[0][0]).trim(),
-				'width': String(values[1][0]).trim(),
-				'src': String(values[2][0]).trim(),
-				'link': String(values[3][0]).trim()
+				'top': String(values[0][0]).trim(),
+				'title': String(values[1][0]).trim(),
+				'width': String(values[2][0]).trim(),
+				'src': String(values[3][0]).trim(),
+				'link': String(values[4][0]).trim(),
+				'bottom': String(values[5][0]).trim()
 			},
 			'title': {
-				'top': String(values[4][0]).trim(),
-				'text': String(values[5][0]).trim()
+				'top': String(values[6][0]).trim(),
+				'text': String(values[7][0]).trim(),
+				'bottom': String(values[8][0]).trim()
 			}
 		},
 		'body': {
 			'heading': {
-				'top': String(values[6][0]).trim(),
-				'bottom': String(values[8][0]).trim(),
-				'text': String(values[7][0]).trim()
+				'top': String(values[9][0]).trim(),
+				'text': String(values[10][0]).trim(),
+				'bottom': String(values[11][0]).trim()
 			},
 			'img': {
-				'title': String(values[9][0]).trim(),
-				'width': String(values[10][0]).trim(),
-				'src': String(values[11][0]).trim(),
-				'link': String(values[12][0]).trim(),
-				'top': String(values[13][0]).trim(),
-				'bottom': String(values[14][0]).trim()
+				'top': String(values[12][0]).trim(),
+				'title': String(values[13][0]).trim(),
+				'width': String(values[14][0]).trim(),
+				'src': String(values[15][0]).trim(),
+				'link': String(values[16][0]).trim(),
+				'bottom': String(values[17][0]).trim()
 			},
 			'subheading': {
-				'text': String(values[15][0]).trim()
+				'top': String(values[18][0]).trim(),
+				'text': String(values[19][0]).trim(),
+				'bottom': String(values[20][0]).trim()
 			},
 			'box': {
-				'top': 15,
-				'bottom': String(values[17][0]).trim(),
-				'text': String(values[16][0]).trim()
+				'top': String(values[21][0]).trim(),
+				'text': String(values[22][0]).trim(),
+				'bottom': String(values[23][0]).trim()
 			}
 		},
 		'footer': {
-			'staff': [],
-			'unsubscribe': String(values[21][0]).trim()
+			'staff': {
+				'top': String(values[24][0]).trim(),
+				'workers': [],
+				'bottom': String(values[28][0]).trim()
+			},
+			'unsubscribe': String(values[29][0]).trim()
 		}
 	};
 }

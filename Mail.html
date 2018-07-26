@@ -10,7 +10,7 @@
 			<tbody>
 				<!-- BEGIN HEADER -->
 				<tr>
-					<td id="HEADER_IMAGE" style="text-align: center; padding: 40px 20px 0;">
+					<td id="HEADER_IMAGE" style="text-align: center; padding: <?= content.header.img.top ?>px 20px <?= content.header.img.bottom ?>px;">
 						<a href="<?= content.header.img.link ?>" style="display: block; line-height: 100%; outline: none; text-decoration: none;">
 							<img style="-ms-interpolation-mode: bicubic; border: 0; max-width: 560px; height: auto;" title="<?= content.header.img.title ?>" src="<?= content.header.img.src ?>" alt="<?= content.header.img.title ?>" width="<?= content.header.img.width ?>"/>
 						</a>
@@ -18,7 +18,7 @@
 				</tr>
 				<? if (content.header.title.text != '') { ?>
 				<tr>
-					<td id="HEADER_TEXT" style="padding: <?= content.header.title.top ?>px 20px 0;">
+					<td id="HEADER_TEXT" style="padding: <?= content.header.title.top ?>px 20px <?= content.header.title.bottom ?>px;">
 						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 18px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0;"><?= content.header.title.text ?></p>
 					</td>
 				</tr>
@@ -47,7 +47,7 @@
 				<? } ?>
 				<? if (content.body.subheading.text != '') { ?>
 				<tr>
-					<td id="BODY_TEXT_BELOW_IMAGE" style="padding: 0 20px;">
+					<td id="BODY_TEXT_BELOW_IMAGE" style="padding: <?= content.body.subheading.top ?>px 20px <?= content.body.subheading.bottom ?>px;">
 						<? for (var i = 0; i < content.body.subheading.paragraphs.length; i++) {
 								var paragraph = content.body.subheading.paragraphs[i]; ?>
 						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.subheading.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><?= paragraph ?></p>
@@ -76,11 +76,12 @@
 				<!-- END BODY -->
 
 				<!-- BEGIN FOOTER -->
-				<? for (var i = 0; i < content.footer.staff.length; i++) {
-						var employee = content.footer.staff[i]; ?>
+				<? if (content.footer.staff.workers.length > 0) { ?>
 				<tr>
-					<td id="FOOTER_STAFF_SIGNATURE_NAME<?= i ?>" style="padding: 0 20px <?= (i < (content.footer.staff.length - 1)) ? 15 : 0 ?>px;">
-						<table border="0" cellspacing="0" cellpadding="0">
+					<td id="FOOTER_STAFF_SIGNATURE_NAME<?= i ?>" style="padding: <?= content.footer.staff.top ?>px 20px <?= content.footer.staff.bottom ?>px;">
+						<? for (var i = 0; i < content.footer.staff.workers.length; i++) {
+							var employee = content.footer.staff.workers[i]; ?>
+						<table border="0" cellspacing="0" cellpadding="0" style="padding: 0 0 <?= (i < (content.footer.staff.workers.length - 1)) ? 15 : 0 ?>px;">
 							<tbody>
 								<tr>
 									<td style="padding: 0;">
@@ -93,6 +94,7 @@
 								</tr>
 							</tbody>
 						</table>
+						<? } ?>
 					</td>
 				</tr>
 				<? } ?>
