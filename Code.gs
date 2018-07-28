@@ -69,6 +69,15 @@ function getContentObject(values) {
 	};
 }
 
+function getWorkers(names, team) {
+	var ui = SpreadsheetApp.getUi(),
+		workers = [];
+
+	
+
+	return workers;
+}
+
 function showMailPopup() {
 	var ui = SpreadsheetApp.getUi(),
 		ss = SpreadsheetApp.getActive(),
@@ -76,10 +85,15 @@ function showMailPopup() {
 		activeRange = sheet.getActiveRange(),
 		values = sheet.getRange(3, activeRange.getColumn(), activeRange.getNumRows()).getValues(),
 		mail = HtmlService.createTemplateFromFile('Mail.html'),
-		content = getContentObject(values);
+		content = getContentObject(values),
+		names = [
+			getValue(values, 27),
+			getValue(values, 28),
+			getValue(values, 29)
+		];
 
-	for (var i = 25; i <= 27; i++) {
-		var name = String(values[i][0]).trim(),
+	for (var i = 0; i < names.length; i++) {
+		var name = names[i],
 			nameParts = name.split(' ');
 
 		if (nameParts.length == 2) {
