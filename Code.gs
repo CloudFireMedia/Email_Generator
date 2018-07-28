@@ -82,8 +82,7 @@ function showMailPopup() {
 	var ui = SpreadsheetApp.getUi(),
 		ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Responses'),
-		activeRange = sheet.getActiveRange(),
-		values = sheet.getRange(3, activeRange.getColumn(), activeRange.getNumRows()).getValues(),
+		values = sheet.getRange('D3:D34').getValues(),
 		mail = HtmlService.createTemplateFromFile('Mail.html'),
 		content = getContentObject(values),
 		names = [
