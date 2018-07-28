@@ -59,6 +59,10 @@
 		<fieldset>
 			<legend>Header Image</legend>
 			<div class="row">
+				<label for="header-img-top">Top padding</label>
+				<input id="header-img-top" name="header-img-top" type="number" placeholder="Top padding" value="<?= content.header.img.top ?>"/>
+			</div>
+			<div class="row">
 				<label for="header-img-title">Title</label>
 				<input id="header-img-title" name="header-img-title" class="ui-widget ui-textfield" type="text" placeholder="Title" value="<?= content.header.img.title ?>"/>
 			</div>
@@ -74,6 +78,10 @@
 				<label for="header-img-link">Link URL</label>
 				<input id="header-img-link" name="header-img-link" class="ui-widget ui-textfield" type="text" placeholder="Link URL" value="<?= content.header.img.link ?>"/>
 			</div>
+			<div class="row">
+				<label for="header-img-bottom">Bottom padding</label>
+				<input id="header-img-bottom" name="header-img-bottom" type="number" placeholder="Bottom padding" value="<?= content.header.img.bottom ?>"/>
+			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Header Text</legend>
@@ -81,9 +89,13 @@
 				<label for="header-title-top">Top padding</label>
 				<input id="header-title-top" name="header-title-top" type="number" placeholder="Top padding" value="<?= content.header.title.top ?>"/>
 			</div>
+			<div class="row">
+				<label for="header-title-bottom">Bottom padding</label>
+				<input id="header-title-bottom" name="header-title-bottom" type="number" placeholder="Bottom padding" value="<?= content.header.title.bottom ?>"/>
+			</div>
 		</fieldset>
 		<fieldset>
-			<legend>Body Heading</legend>
+			<legend>Body Text Above Body Image</legend>
 			<div class="row">
 				<label for="body-heading-top">Top padding</label>
 				<input id="body-heading-top" name="body-heading-top" type="number" placeholder="Top padding" value="<?= content.body.heading.top ?>"/>
@@ -95,6 +107,10 @@
 		</fieldset>
 		<fieldset>
 			<legend>Body Image</legend>
+			<div class="row">
+				<label for="body-img-top">Top padding</label>
+				<input id="body-img-top" name="body-img-top" type="number" placeholder="Top padding" value="<?= content.body.img.top ?>"/>
+			</div>
 			<div class="row">
 				<label for="body-img-title">Title</label>
 				<input id="body-img-title" name="body-img-title" class="ui-widget ui-textfield" type="text" placeholder="Title" value="<?= content.body.img.title ?>"/>
@@ -112,12 +128,41 @@
 				<input id="header-img-link" name="body-img-link" class="ui-widget ui-textfield" type="text" placeholder="Link URL" value="<?= content.body.img.link ?>"/>
 			</div>
 			<div class="row">
-				<label for="body-img-top">Top padding</label>
-				<input id="header-img-top" name="body-img-top" class="ui-widget ui-textfield" type="text" placeholder="Top padding" value="<?= content.body.img.top ?>"/>
+				<label for="body-img-bottom">Bottom padding</label>
+				<input id="body-img-bottom" name="body-img-bottom" type="number" placeholder="Top padding" value="<?= content.body.img.bottom ?>"/>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Body Text Below Body Image</legend>
+			<div class="row">
+				<label for="body-subheading-top">Top padding</label>
+				<input id="body-subheading-top" name="body-subheading-top" type="number" placeholder="Top padding" value="<?= content.body.subheading.top ?>"/>
 			</div>
 			<div class="row">
-				<label for="body-img-bottom">Bottom padding</label>
-				<input id="header-img-bottom" name="body-img-bottom" class="ui-widget ui-textfield" type="text" placeholder="Bottom padding" value="<?= content.body.img.bottom ?>"/>
+				<label for="body-subheading-bottom">Bottom padding</label>
+				<input id="body-subheading-bottom" name="body-subheading-bottom" type="number" placeholder="Bottom padding" value="<?= content.body.subheading.bottom ?>"/>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Body Grey Box</legend>
+			<div class="row">
+				<label for="body-box-top">Top padding</label>
+				<input id="body-box-top" name="body-box-top" type="number" placeholder="Top padding" value="<?= content.body.box.top ?>"/>
+			</div>
+			<div class="row">
+				<label for="body-box-bottom">Bottom padding</label>
+				<input id="body-box-bottom" name="body-box-bottom" type="number" placeholder="Bottom padding" value="<?= content.body.box.bottom ?>"/>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Footer Staff</legend>
+			<div class="row">
+				<label for="footer-staff-top">Top padding</label>
+				<input id="footer-staff-top" name="footer-staff-top" type="number" placeholder="Top padding" value="<?= content.footer.staff.top ?>"/>
+			</div>
+			<div class="row">
+				<label for="footer-staff-bottom">Bottom padding</label>
+				<input id="footer-staff-bottom" name="footer-staff-bottom" type="number" placeholder="Bottom padding" value="<?= content.footer.staff.bottom ?>"/>
 			</div>
 		</fieldset>
 		<button id="save-params-btn">Save</button>
@@ -146,13 +191,16 @@
 					.setDefaultValues({
 						'header': {
 							'img': {
+								'top': values['header-img-top'],
 								'title': values['header-img-title'],
 								'width': values['header-img-width'],
 								'src': values['header-img-src'],
-								'link': values['header-img-link']
+								'link': values['header-img-link'],
+								'bottom': values['header-img-bottom']
 							},
 							'title': {
-								'top': values['header-title-top']
+								'top': values['header-title-top'],
+								'bottom': values['header-title-bottom']
 							}
 						},
 						'body': {
@@ -161,12 +209,26 @@
 								'bottom': values['body-heading-bottom']
 							},
 							'img': {
+								'top': values['body-img-top'],
 								'title': values['body-img-title'],
 								'width': values['body-img-width'],
 								'src': values['body-img-src'],
 								'link': values['body-img-link'],
-								'top': values['body-img-top'],
 								'bottom': values['body-img-bottom']
+							},
+							'subheading': {
+								'top': values['body-subheading-top'],
+								'bottom': values['body-subheading-bottom']
+							},
+							'box': {
+								'top': values['body-box-top'],
+								'bottom': values['body-box-bottom']
+							}
+						},
+						'footer': {
+							'staff': {
+								'top': values['footer-staff-top'],
+								'bottom': values['footer-staff-bottom']
 							}
 						}
 					});

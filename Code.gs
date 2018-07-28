@@ -12,63 +12,71 @@ function onOpen() {
 		.addToUi();
 }
 
+function getValue(values, index) {
+	return String(values[index][0]).trim();
+}
+
+function getContentObject(values) {
+	return {
+		'header': {
+			'img': {
+				'top': getValue(values, 0),
+				'title': getValue(values, 1),
+				'width': getValue(values, 2),
+				'src': getValue(values, 3),
+				'link': getValue(values, 4),
+				'bottom': getValue(values, 5)
+			},
+			'title': {
+				'top': getValue(values, 6),
+				'text': getValue(values, 7),
+				'bottom': getValue(values, 8)
+			}
+		},
+		'body': {
+			'heading': {
+				'top': getValue(values, 10),
+				'text': getValue(values, 11),
+				'bottom': getValue(values, 12)
+			},
+			'img': {
+				'top': getValue(values, 13),
+				'title': getValue(values, 14),
+				'width': getValue(values, 15),
+				'src': getValue(values, 16),
+				'link': getValue(values, 17),
+				'bottom': getValue(values, 18)
+			},
+			'subheading': {
+				'top': getValue(values, 19),
+				'text': getValue(values, 20),
+				'bottom': getValue(values, 21)
+			},
+			'box': {
+				'top': getValue(values, 22),
+				'text': getValue(values, 23),
+				'bottom': getValue(values, 24)
+			}
+		},
+		'footer': {
+			'staff': {
+				'top': getValue(values, 26),
+				'workers': [],
+				'bottom': getValue(values, 30)
+			},
+			'unsubscribe': getValue(values, 31)
+		}
+	};
+}
+
 function showMailPopup() {
 	var ui = SpreadsheetApp.getUi(),
 		ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Responses'),
 		activeRange = sheet.getActiveRange(),
-		values = sheet.getRange(1, activeRange.getColumn(), activeRange.getNumRows()).getValues(),
+		values = sheet.getRange(3, activeRange.getColumn(), activeRange.getNumRows()).getValues(),
 		mail = HtmlService.createTemplateFromFile('Mail.html'),
-		content = {
-			'header': {
-				'img': {
-					'top': String(values[0][0]).trim(),
-					'title': String(values[1][0]).trim(),
-					'width': String(values[2][0]).trim(),
-					'src': String(values[3][0]).trim(),
-					'link': String(values[4][0]).trim(),
-					'bottom': String(values[5][0]).trim()
-				},
-				'title': {
-					'top': String(values[6][0]).trim(),
-					'text': String(values[7][0]).trim(),
-					'bottom': String(values[8][0]).trim()
-				}
-			},
-			'body': {
-				'heading': {
-					'top': String(values[9][0]).trim(),
-					'text': String(values[10][0]).trim(),
-					'bottom': String(values[11][0]).trim()
-				},
-				'img': {
-					'top': String(values[12][0]).trim(),
-					'title': String(values[13][0]).trim(),
-					'width': String(values[14][0]).trim(),
-					'src': String(values[15][0]).trim(),
-					'link': String(values[16][0]).trim(),
-					'bottom': String(values[17][0]).trim()
-				},
-				'subheading': {
-					'top': String(values[18][0]).trim(),
-					'text': String(values[19][0]).trim(),
-					'bottom': String(values[20][0]).trim()
-				},
-				'box': {
-					'top': String(values[21][0]).trim(),
-					'text': String(values[22][0]).trim(),
-					'bottom': String(values[23][0]).trim()
-				}
-			},
-			'footer': {
-				'staff': {
-					'top': String(values[24][0]).trim(),
-					'workers': [],
-					'bottom': String(values[28][0]).trim()
-				},
-				'unsubscribe': String(values[29][0]).trim()
-			}
-		};
+		content = getContentObject(values);
 
 	for (var i = 25; i <= 27; i++) {
 		var name = String(values[i][0]).trim(),
@@ -130,79 +138,43 @@ function setDefaultValues(values) {
 	var ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Defaults');
 
-	sheet.getRange('D1').setValue(values.header.img.title);
-	sheet.getRange('D2').setValue(values.header.img.width);
-	sheet.getRange('D3').setValue(values.header.img.src);
-	sheet.getRange('D4').setValue(values.header.img.link);
+	sheet.getRange('D3').setValue(values.header.img.top);
+	sheet.getRange('D4').setValue(values.header.img.title);
+	sheet.getRange('D5').setValue(values.header.img.width);
+	sheet.getRange('D6').setValue(values.header.img.src);
+	sheet.getRange('D7').setValue(values.header.img.link);
+	sheet.getRange('D8').setValue(values.header.img.bottom);
 
-	sheet.getRange('D5').setValue(values.header.title.top);
+	sheet.getRange('D9').setValue(values.header.title.top);
+	sheet.getRange('D11').setValue(values.header.title.bottom);
 
-	sheet.getRange('D7').setValue(values.body.heading.top);
-	sheet.getRange('D9').setValue(values.body.heading.bottom);
+	sheet.getRange('D13').setValue(values.body.heading.top);
+	sheet.getRange('D15').setValue(values.body.heading.bottom);
 
-	sheet.getRange('D10').setValue(values.body.img.title);
-	sheet.getRange('D11').setValue(values.body.img.width);
-	sheet.getRange('D12').setValue(values.body.img.src);
-	sheet.getRange('D13').setValue(values.body.img.link);
-	sheet.getRange('D14').setValue(values.body.img.top);
-	sheet.getRange('D15').setValue(values.body.img.bottom);
+	sheet.getRange('D16').setValue(values.body.img.top);
+	sheet.getRange('D17').setValue(values.body.img.title);
+	sheet.getRange('D18').setValue(values.body.img.width);
+	sheet.getRange('D19').setValue(values.body.img.src);
+	sheet.getRange('D20').setValue(values.body.img.link);
+	sheet.getRange('D21').setValue(values.body.img.bottom);
+
+	sheet.getRange('D22').setValue(values.body.subheading.top);
+	sheet.getRange('D24').setValue(values.body.subheading.bottom);
+
+	sheet.getRange('D25').setValue(values.body.box.top);
+	sheet.getRange('D27').setValue(values.body.box.bottom);
+
+	sheet.getRange('D29').setValue(values.footer.staff.top);
+	sheet.getRange('D33').setValue(values.footer.staff.bottom);
 }
 
 function getDefaultValues() {
 	var ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Defaults'),
-		values = sheet.getRange('D1:D30').getValues();
+		values = sheet.getRange('D3:D34').getValues(),
+		content = getContentObject(values);
 
-	return {
-		'header': {
-			'img': {
-				'top': String(values[0][0]).trim(),
-				'title': String(values[1][0]).trim(),
-				'width': String(values[2][0]).trim(),
-				'src': String(values[3][0]).trim(),
-				'link': String(values[4][0]).trim(),
-				'bottom': String(values[5][0]).trim()
-			},
-			'title': {
-				'top': String(values[6][0]).trim(),
-				'text': String(values[7][0]).trim(),
-				'bottom': String(values[8][0]).trim()
-			}
-		},
-		'body': {
-			'heading': {
-				'top': String(values[9][0]).trim(),
-				'text': String(values[10][0]).trim(),
-				'bottom': String(values[11][0]).trim()
-			},
-			'img': {
-				'top': String(values[12][0]).trim(),
-				'title': String(values[13][0]).trim(),
-				'width': String(values[14][0]).trim(),
-				'src': String(values[15][0]).trim(),
-				'link': String(values[16][0]).trim(),
-				'bottom': String(values[17][0]).trim()
-			},
-			'subheading': {
-				'top': String(values[18][0]).trim(),
-				'text': String(values[19][0]).trim(),
-				'bottom': String(values[20][0]).trim()
-			},
-			'box': {
-				'top': String(values[21][0]).trim(),
-				'text': String(values[22][0]).trim(),
-				'bottom': String(values[23][0]).trim()
-			}
-		},
-		'footer': {
-			'staff': {
-				'top': String(values[24][0]).trim(),
-				'workers': [],
-				'bottom': String(values[28][0]).trim()
-			},
-			'unsubscribe': String(values[29][0]).trim()
-		}
-	};
+	return content;
 }
 
 function getStaffObject(firstname, lastname) {
