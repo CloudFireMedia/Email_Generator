@@ -69,15 +69,6 @@ function getContentObject(values) {
 	};
 }
 
-function getWorkers(names, team) {
-	var ui = SpreadsheetApp.getUi(),
-		workers = [];
-
-	
-
-	return workers;
-}
-
 function showMailPopup() {
 	var ui = SpreadsheetApp.getUi(),
 		ss = SpreadsheetApp.getActive(),
