@@ -1,70 +1,59 @@
 var SCRIPT_NAME = 'Email_Generator',
-	SCRIPT_VERSION = 'v1.8';
+	SCRIPT_VERSION = 'v1.8.dev_ajr';
 
-function onOpen() {
-	var ui = SpreadsheetApp.getUi();
-
-	ui.createMenu('Mail')
-		.addItem('Create HTML', 'showMailPopup')
-		.addItem('Set Defaults', 'showFormPopup')
-		.addSeparator()
-		.addItem('Delete Columns', 'deleteColumns')
-		.addToUi();
-}
-
-function getValue(values, index) {
+function getValue_(values, index) {
 	return String(values[index][0]).trim();
 }
 
-function getContentObject(values) {
+function getContentObject_(values) {
 	return {
 		'header': {
 			'img': {
-				'top': getValue(values, 0),
-				'title': getValue(values, 1),
-				'width': getValue(values, 2),
-				'src': getValue(values, 3),
-				'link': getValue(values, 4),
-				'bottom': getValue(values, 5)
+				'top': getValue_(values, 0),
+				'title': getValue_(values, 1),
+				'width': getValue_(values, 2),
+				'src': getValue_(values, 3),
+				'link': getValue_(values, 4),
+				'bottom': getValue_(values, 5)
 			},
 			'title': {
-				'top': getValue(values, 6),
-				'text': getValue(values, 7),
-				'bottom': getValue(values, 8)
+				'top': getValue_(values, 6),
+				'text': getValue_(values, 7),
+				'bottom': getValue_(values, 8)
 			}
 		},
 		'body': {
 			'heading': {
-				'top': getValue(values, 10),
-				'text': getValue(values, 11),
-				'bottom': getValue(values, 12)
+				'top': getValue_(values, 10),
+				'text': getValue_(values, 11),
+				'bottom': getValue_(values, 12)
 			},
 			'img': {
-				'top': getValue(values, 13),
-				'title': getValue(values, 14),
-				'width': getValue(values, 15),
-				'src': getValue(values, 16),
-				'link': getValue(values, 17),
-				'bottom': getValue(values, 18)
+				'top': getValue_(values, 13),
+				'title': getValue_(values, 14),
+				'width': getValue_(values, 15),
+				'src': getValue_(values, 16),
+				'link': getValue_(values, 17),
+				'bottom': getValue_(values, 18)
 			},
 			'subheading': {
-				'top': getValue(values, 19),
-				'text': getValue(values, 20),
-				'bottom': getValue(values, 21)
+				'top': getValue_(values, 19),
+				'text': getValue_(values, 20),
+				'bottom': getValue_(values, 21)
 			},
 			'box': {
-				'top': getValue(values, 22),
-				'text': getValue(values, 23),
-				'bottom': getValue(values, 24)
+				'top': getValue_(values, 22),
+				'text': getValue_(values, 23),
+				'bottom': getValue_(values, 24)
 			}
 		},
 		'footer': {
 			'staff': {
-				'top': getValue(values, 26),
+				'top': getValue_(values, 26),
 				'workers': [],
-				'bottom': getValue(values, 30)
+				'bottom': getValue_(values, 30)
 			},
-			'unsubscribe': getValue(values, 31)
+			'unsubscribe': getValue_(values, 31)
 		}
 	};
 }
@@ -75,11 +64,11 @@ function showMailPopup() {
 		sheet = ss.getSheetByName('Responses'),
 		values = sheet.getRange('D3:D34').getValues(),
 		mail = HtmlService.createTemplateFromFile('Mail.html'),
-		content = getContentObject(values),
+		content = getContentObject_(values),
 		names = [
-			getValue(values, 27),
-			getValue(values, 28),
-			getValue(values, 29)
+			getValue_(values, 27),
+			getValue_(values, 28),
+			getValue_(values, 29)
 		];
 
 	for (var i = 0; i < names.length; i++) {
@@ -87,7 +76,7 @@ function showMailPopup() {
 			nameParts = name.split(' ');
 
 		if (nameParts.length == 2) {
-			var person = getStaffObject(nameParts[0], nameParts[1]);
+			var person = getStaffObject_(nameParts[0], nameParts[1]);
 
 			if (content.footer.unsubscribe.toUpperCase() != person.team.toUpperCase()) {
 				var resp = ui.alert('Warning', (person.name + ' is not in ' + content.footer.unsubscribe + '. Do you wish to continue?'), ui.ButtonSet.YES_NO);
@@ -101,7 +90,7 @@ function showMailPopup() {
 		}
 	}
 
-	content = mergeObjects(content, getDefaultValues());
+	content = mergeObjects_(content, getDefaultValues_());
 
 	content.body.heading['paragraphs'] = content.body.heading.text.split('\n');
 	content.body.subheading['paragraphs'] = content.body.subheading.text.split('\n');
@@ -120,7 +109,7 @@ function showFormPopup() {
 	var ui = SpreadsheetApp.getUi(),
 		form = HtmlService.createTemplateFromFile('Form.html');
 
-	form.content = getDefaultValues();
+	form.content = getDefaultValues_();
 
 	var html = form.evaluate()
 				   .setWidth(520)
@@ -172,16 +161,16 @@ function setDefaultValues(values) {
 	sheet.getRange('D33').setValue(values.footer.staff.bottom);
 }
 
-function getDefaultValues() {
+function getDefaultValues_() {
 	var ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Defaults'),
 		values = sheet.getRange('D3:D34').getValues(),
-		content = getContentObject(values);
+		content = getContentObject_(values);
 
 	return content;
 }
 
-function getStaffObject(firstname, lastname) {
+function getStaffObject_(firstname, lastname) {
 	var ss = SpreadsheetApp.openById('1iiFmdqUd-CoWtUjZxVgGcNb74dPVh-l5kuU_G5mmiHI'),
 		sheet = ss.getSheetByName('Staff'),
 		values = sheet.getDataRange().getValues(),
@@ -189,7 +178,7 @@ function getStaffObject(firstname, lastname) {
 			'name': firstname + ' ' + lastname,
 			'title': '',
 			'team': '',
-			'photo': getStaffImage(firstname, lastname)
+			'photo': getStaffImage_(firstname, lastname)
 		};
 
 	for (var i = 2; i < values.length; i++) {
@@ -204,9 +193,9 @@ function getStaffObject(firstname, lastname) {
 	return person;
 }
 
-function getStaffImage(firstname, lastname) {
+function getStaffImage_(firstname, lastname) {
 	var folders = DriveApp.getFoldersByName(lastname + ', ' + firstname),
-		imgFile = searchFileInFolder(folders, 'BubbleHead');
+		imgFile = searchFileInFolder_(folders, 'BubbleHead');
 
 	if (imgFile != null) {
 		var fileId = imgFile.getId();
@@ -217,7 +206,7 @@ function getStaffImage(firstname, lastname) {
 	return 'https://vignette.wikia.nocookie.net/citrus/images/6/60/No_Image_Available.png';
 }
 
-function searchFileInFolder(folders, filename) {
+function searchFileInFolder_(folders, filename) {
 	while (folders.hasNext()) {
 		var folder = folders.next(),
 			files = folder.searchFiles('title contains "' + filename + '"');
@@ -229,7 +218,7 @@ function searchFileInFolder(folders, filename) {
 		var subfolders = folder.getFolders();
 
 		if (subfolders.hasNext()) {
-			var file = searchFileInFolder(subfolders, filename);
+			var file = searchFileInFolder_(subfolders, filename);
 
 			if (file != null) {
 				return file;
@@ -240,14 +229,34 @@ function searchFileInFolder(folders, filename) {
 	return;
 }
 
-function mergeObjects(obj, src) {
+function mergeObjects_(obj, src) {
 	for (var key in obj) {
 		if (obj[key].constructor == Object) {
-			obj[key] = mergeObjects(obj[key], src[key]);
+			obj[key] = mergeObjects_(obj[key], src[key]);
 		} else if (String(obj[key]) == '') {
 			obj[key] = src[key];
 		}
 	}
 
 	return obj;
+}
+
+// redevelopment note: only hide the column if the date in the first Row has lapsed
+
+// move column D to the end of the sheet and hide onOpen
+function moveColumn_(iniCol, finCol) {  
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getActiveSheet();
+  var iniCol = 3;
+  var finCol = sh.getMaxColumns();
+  var lRow = sh.getMaxRows();
+
+    sh.insertColumnAfter(finCol);
+    var iniRange = sh.getRange(1, iniCol + 1, lRow);
+    var finRange = sh.getRange(1, finCol + 1, lRow);
+    iniRange.copyTo(finRange, {contentsOnly:true});
+    sh.deleteColumn(iniCol + 1);    
+    sh.hideColumns(finCol);
+    sh.insertColumns(4, 1);
 }
