@@ -1,140 +1,181 @@
 <!doctype html>
 <html>
+
 <head>
-	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet"/>
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
+    rel="stylesheet" />
 </head>
+
 <body>
-	<div id="mail">
-		<table style="width: 600px; margin: 0 auto;" border="0" cellspacing="0" cellpadding="0" align="center">
-			<tbody>
-				<!-- BEGIN HEADER -->
-				<tr>
-					<td id="HEADER_IMAGE" style="text-align: center; padding: <?= content.header.img.top ?>px 20px <?= content.header.img.bottom ?>px;">
-						<a href="<?= content.header.img.link ?>" style="display: block; line-height: 100%; outline: none; text-decoration: none;">
-							<img style="-ms-interpolation-mode: bicubic; border: 0; max-width: 560px; height: auto;" title="<?= content.header.img.title ?>" src="<?= content.header.img.src ?>" alt="<?= content.header.img.title ?>" width="<?= content.header.img.width ?>"/>
-						</a>
-					</td>
-				</tr>
-				<? if (content.header.title.text != '') { ?>
-				<tr>
-					<td id="HEADER_TEXT" style="padding: <?= content.header.title.top ?>px 20px <?= content.header.title.bottom ?>px;">
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 18px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0;"><?= content.header.title.text ?></p>
-					</td>
-				</tr>
-				<? } ?>
-				<!-- END HEADER -->
+  <div id="mail">
+    <table style="width: 600px; margin: 0 auto;" border="0" cellspacing="0"
+      cellpadding="0" align="center">
+      <tbody>
+        <!-- BEGIN HEADER -->
+        <tr>
+          <td id="HEADER_IMAGE" style="text-align: center; padding: <?= content.header.img.top ?>px 20px <?= content.header.img.bottom ?>px;">
+            <a href="<?= content.header.img.link ?>" style="display: block; line-height: 100%; outline: none; text-decoration: none;">
+              <img style="-ms-interpolation-mode: bicubic; border: 0; max-width: 560px; height: auto;"
+                title="<?= content.header.img.title ?>" src="<?= content.header.img.src ?>"
+                alt="<?= content.header.img.title ?>" width="<?= content.header.img.width ?>" />
+            </a>
+          </td>
+        </tr>
+        <? if (content.header.title.text != '') { ?>
+        <tr>
+          <td id="HEADER_TEXT" style="padding: <?= content.header.title.top ?>px 20px <?= content.header.title.bottom ?>px;">
+            <p style="color: #484848; font-family: Lato, Helvetica; font-size: 18px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0; ‑webkit‑text‑size‑adjust: none">
+              <?= content.header.title.text ?>
+            </p>
+          </td>
+        </tr>
+        <? } ?>
+        <!-- END HEADER -->
 
-				<!-- BEGIN BODY -->
-				<? if (content.body.heading.text != '') { ?>
-				<tr>
-					<td id="BODY_TEXT_ABOVE_IMAGE" style="padding: <?= content.body.heading.top ?>px 20px <?= content.body.heading.bottom ?>px;">
-						<? for (var i = 0; i < content.body.heading.paragraphs.length; i++) {
+        <!-- BEGIN BODY -->
+        <? if (content.body.heading.text != '') { ?>
+        <tr>
+          <td id="BODY_TEXT_ABOVE_IMAGE" style="padding: <?= content.body.heading.top ?>px 20px <?= content.body.heading.bottom ?>px;">
+            <? for (var i = 0; i < content.body.heading.paragraphs.length; i++) {
 								var paragraph = content.body.heading.paragraphs[i]; ?>
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.heading.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><?= paragraph ?></p>
-						<? } ?>
-					</td>
-				</tr>
-				<? } ?>
-				<? if (content.body.img.src != '') { ?>
-				<tr>
-					<td id="BODY_IMAGE" style="padding: <?= content.body.img.top ?>px 20px <?= content.body.img.bottom ?>px;">
-						<a href="<?= content.body.img.link ?>" style="display: block; line-height: 100%; outline: none; text-decoration: none;">
-							<img style="-ms-interpolation-mode: bicubic; border: 0; max-width: 560px; height: auto;" title="<?= content.body.img.title ?>" src="<?= content.body.img.src ?>" alt="<?= content.body.img.title ?>" width="<?= content.body.img.width ?>"/>
-						</a>
-					</td>
-				</tr>
-				<? } ?>
-				<? if (content.body.subheading.text != '') { ?>
-				<tr>
-					<td id="BODY_TEXT_BELOW_IMAGE" style="padding: <?= content.body.subheading.top ?>px 20px <?= content.body.subheading.bottom ?>px;">
-						<? for (var i = 0; i < content.body.subheading.paragraphs.length; i++) {
+            <p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.heading.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;">
+              <?= paragraph ?>
+            </p>
+            <? } ?>
+          </td>
+        </tr>
+        <? } ?>
+        <? if (content.body.img.src != '') { ?>
+        <tr>
+          <td id="BODY_IMAGE" style="padding: <?= content.body.img.top ?>px 20px <?= content.body.img.bottom ?>px;">
+            <a href="<?= content.body.img.link ?>" style="display: block; line-height: 100%; outline: none; text-decoration: none;">
+              <img style="-ms-interpolation-mode: bicubic; border: 0; max-width: 560px; height: auto;"
+                title="<?= content.body.img.title ?>" src="<?= content.body.img.src ?>"
+                alt="<?= content.body.img.title ?>" width="<?= content.body.img.width ?>" />
+            </a>
+          </td>
+        </tr>
+        <? } ?>
+        <? if (content.body.subheading.text != '') { ?>
+        <tr>
+          <td id="BODY_TEXT_BELOW_IMAGE" style="padding: <?= content.body.subheading.top ?>px 20px <?= content.body.subheading.bottom ?>px;">
+            <? for (var i = 0; i < content.body.subheading.paragraphs.length; i++) {
 								var paragraph = content.body.subheading.paragraphs[i]; ?>
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.subheading.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><?= paragraph ?></p>
-						<? } ?>
-					</td>
-				</tr>
-				<? } ?>
-				<? if (content.body.box.text != '') { ?>
-				<tr>
-					<td id="BODY_GREY_BOX" style="padding: <?= content.body.box.top ?>px 20px <?= content.body.box.bottom ?>px;">
-						<table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
-							<tbody>
-								<tr>
-									<td style="background-color: #f4f1f4; padding: 15px 20px;">
-										<? for (var i = 0; i < content.body.box.paragraphs.length; i++) {
+            <p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.subheading.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;">
+              <?= paragraph ?>
+            </p>
+            <? } ?>
+          </td>
+        </tr>
+        <? } ?>
+        <? if (content.body.box.text != '') { ?>
+        <tr>
+          <td id="BODY_GREY_BOX" style="padding: <?= content.body.box.top ?>px 20px <?= content.body.box.bottom ?>px;">
+            <table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td style="background-color: #f4f1f4; padding: 15px 20px;">
+                    <? for (var i = 0; i < content.body.box.paragraphs.length; i++) {
 												var paragraph = content.body.box.paragraphs[i]; ?>
-										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.box.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><?= paragraph ?></p>
-										<? } ?>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-				<? } ?>
-				<!-- END BODY -->
+                    <p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.box.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;">
+                      <?= paragraph ?>
+                    </p>
+                    <? } ?>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <? } ?>
+        <!-- END BODY -->
 
-				<!-- BEGIN FOOTER -->
-				<? if (content.footer.staff.workers.length > 0) { ?>
-				<tr>
-					<td style="padding: <?= content.footer.staff.top ?>px 20px <?= content.footer.staff.bottom ?>px;">
-						<? for (var i = 0; i < content.footer.staff.workers.length; i++) {
+        <!-- BEGIN FOOTER -->
+        <? if (content.footer.staff.workers.length > 0) { ?>
+        <tr>
+          <td style="padding: <?= content.footer.staff.top ?>px 20px <?= content.footer.staff.bottom ?>px;">
+            <? for (var i = 0; i < content.footer.staff.workers.length; i++) {
 							var employee = content.footer.staff.workers[i]; ?>
-						<table id="FOOTER_STAFF_SIGNATURE_NAME<?= (i + 1) ?>" border="0" cellspacing="0" cellpadding="0" style="margin: 0 0 <?= (i < (content.footer.staff.workers.length - 1)) ? 15 : 0 ?>px;">
-							<tbody>
-								<tr>
-									<td style="padding: 0;">
-										<img src="<?= employee.photo ?>" title="<?= employee.title ?>" alt="<?= employee.title ?>" width="90" height="90" border="0"/>
-									</td>
-									<td style="padding: 0 10px;" valign="center">
-										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0;"><?= employee.name ?></p>
-										<p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0; padding: 0;"><?= employee.title ?></p>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<? } ?>
-					</td>
-				</tr>
-				<? } ?>
-				<!-- END FOOTER -->
+            <table id="FOOTER_STAFF_SIGNATURE_NAME<?= (i + 1) ?>" border="0"
+              cellspacing="0" cellpadding="0" style="margin: 0 0 <?= (i < (content.footer.staff.workers.length - 1)) ? 15 : 0 ?>px;">
+              <tbody>
+                <tr>
+                  <td style="padding: 0;">
+                    <img src="<?= employee.photo ?>" title="<?= employee.title ?>"
+                      alt="<?= employee.title ?>" width="90" height="90" border="0" />
+                  </td>
+                  <td style="padding: 0 10px;" valign="center">
+                    <p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0; ‑webkit‑text‑size‑adjust: none;">
+                      <?= employee.name ?>
+                    </p>
+                    <p style="color: #484848; font-family: Lato, Helvetica; font-size: 14px; line-height: 150%; text-align: left; margin: 0; padding: 0; ‑webkit‑text‑size‑adjust: none;">
+                      <?= employee.title ?>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <? } ?>
+          </td>
+        </tr>
+        <? } ?>
+        <!-- END FOOTER -->
 
-				<tr>
-					<td style="text-align: center; padding: 20px;">
-						<img style="vertical-align: middle;" src="http://www.christchurchnashville.org/wp-content/uploads/2016/10/christchurch_logo_Black_JustCross.png" alt="CCN logo" width="25"/>
-					</td>
-				</tr>
-				<tr>
-					<td style="padding: 0 20px;" valign="center">
-						<p style="color: #484848; font-family: Lato, Helvetica; font-size: 12px; line-height: 150%; line-height: 150%; text-align: center; margin: 0; padding: 0;">
-							<strong>Christ Church Nashville</strong><br/>
-							15354 Old Hickory Blvd<br>
-							Nashville, TN 37211<br>
-							(615) 834-6171<br>
-							<a href="http://www.christchurchnashville.org/">www.christchurchnashville.org</a>
-						</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<br/>
-		<br/>
-		<br/>
-		<!-- BEGIN UNSUBSCRIBE -->
-		<p style="color: #484848; font-family: Lato, Helvetica; font-size: 12px; line-height: 150%; text-align: left; width: 600px; margin: 0 auto; padding: 0 20px;" align="center">
-			If you do not wish to receive <?= content.footer.unsubscribe ?> emails at Christ Church Nashville, <a href="mailto:info@ccnash.org?subject=Unsubscribe me from <?= content.footer.unsubscribe ?> emails">click here</a>. To unsubscribe from <strong>all</strong> CCN emails, click below.
-		</p>
-		<!-- END UNSUBSCRIBE -->
-	</div>
+        <tr>
+          <td style="text-align: center; padding: 40px 0px 5px 0px;"><img style="vertical-align: bottom;" src="http://www.christchurchnashville.org/wp-content/uploads/2016/10/christchurch_logo_Black_JustCross.png" alt="CCN logo" width="25" /></td>
+        </tr>
+        <tr>
+          <td style="padding: 0 20px;" valign="center">
+            <p style="color: #484848; font-family: Lato, Helvetica; font-size: 12px; line-height: 150%; line-height: 150%; text-align: center; margin: 0; padding: 0;">
+              <strong>Christ Church Nashville</strong><br />
+              15354 Old Hickory Blvd<br>
+              Nashville, TN 37211<br>
+              (615) 834-6171<br>
+              <a href="http://www.christchurchnashville.org/">www.christchurchnashville.org</a>
+            </p>
+          </td>
+        </tr>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function() {
-			$('#mail').summernote();
-		});
-	</script>
+        <!-- BEGIN UNSUBSCRIBE -->
+        <table style="width: 600px; margin: 0 auto;" border="0" cellspacing="0"
+          cellpadding="0" align="center">
+          <tbody>
+            <tr>
+              <td style="text-align: left;">
+                <br /><br /><br />
+                <p style="color: #484848; font-family: Lato, Helvetica; font-size: 12px; line-height: 150%; text-align: left; width: 600px; margin: 0 auto; padding: 0 20px;"
+                  align="center">
+                  If you do not wish to receive
+                  <?= content.footer.unsubscribe ?> emails at Christ Church
+                  Nashville, <a href="mailto:info@ccnash.org?subject=Unsubscribe me from <?= content.footer.unsubscribe ?> emails">click
+                    here</a>. To unsubscribe from <strong>all</strong> CCN
+                  emails, click below.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- END UNSUBSCRIBE -->
+        
+      </tbody>
+    </table>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"
+    type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"
+    type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#mail')
+        .summernote();
+    });
+
+  </script>
 </body>
+
 </html>
