@@ -1,5 +1,5 @@
 var SCRIPT_NAME = 'F1_Email_Generator',
-	SCRIPT_VERSION = 'v1.6';
+	SCRIPT_VERSION = 'v1.7';
 
 function onOpen() {
 	var ui = SpreadsheetApp.getUi();
@@ -73,13 +73,17 @@ function showMailPopup() {
 	var ui = SpreadsheetApp.getUi(),
 		ss = SpreadsheetApp.getActive(),
 		sheet = ss.getSheetByName('Responses'),
-		activeRange = sheet.getActiveRange(),
-		values = sheet.getRange(3, activeRange.getColumn(), activeRange.getNumRows()).getValues(),
+		values = sheet.getRange('D3:D34').getValues(),
 		mail = HtmlService.createTemplateFromFile('Mail.html'),
-		content = getContentObject(values);
+		content = getContentObject(values),
+		names = [
+			getValue(values, 27),
+			getValue(values, 28),
+			getValue(values, 29)
+		];
 
-	for (var i = 25; i <= 27; i++) {
-		var name = String(values[i][0]).trim(),
+	for (var i = 0; i < names.length; i++) {
+		var name = names[i],
 			nameParts = name.split(' ');
 
 		if (nameParts.length == 2) {

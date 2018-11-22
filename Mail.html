@@ -78,10 +78,10 @@
 				<!-- BEGIN FOOTER -->
 				<? if (content.footer.staff.workers.length > 0) { ?>
 				<tr>
-					<td id="FOOTER_STAFF_SIGNATURE_NAME<?= i ?>" style="padding: <?= content.footer.staff.top ?>px 20px <?= content.footer.staff.bottom ?>px;">
+					<td style="padding: <?= content.footer.staff.top ?>px 20px <?= content.footer.staff.bottom ?>px;">
 						<? for (var i = 0; i < content.footer.staff.workers.length; i++) {
 							var employee = content.footer.staff.workers[i]; ?>
-						<table border="0" cellspacing="0" cellpadding="0" style="padding: 0 0 <?= (i < (content.footer.staff.workers.length - 1)) ? 15 : 0 ?>px;">
+						<table id="FOOTER_STAFF_SIGNATURE_NAME<?= (i + 1) ?>" border="0" cellspacing="0" cellpadding="0" style="margin: 0 0 <?= (i < (content.footer.staff.workers.length - 1)) ? 15 : 0 ?>px;">
 							<tbody>
 								<tr>
 									<td style="padding: 0;">
