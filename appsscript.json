@@ -5,23 +5,12 @@
       "userSymbol": "Config",
       "libraryId": "1oO44r3nax5MO1XsI1hlr4ZM0OtPVCQKgDYUe08ej_SkIKn9uvzZ6WKQl",
       "version": "10"
+    }, {
+      "userSymbol": "EmailGenerator",
+      "libraryId": "1ykFe56uEIn8kUeXe_LNv5eJPFhKA-_P5rzT8TSr_Z9nsSsMVjsFCnEHO",
+      "version": "3",
+      "developmentMode": true
     }]
   },
-  "exceptionLogging": "STACKDRIVER",
-  "sheets": {
-    "macros": [{
-      "menuName": "Format Cols A - F",
-      "functionName": "myFunction",
-      "defaultShortcut": "Ctrl+Alt+Shift+1"
-    }, {
-      "menuName": "Format Old Emails",
-      "functionName": "FormatOldEmails"
-    }, {
-      "menuName": "Format Input 2",
-      "functionName": "FormatInput2"
-    }, {
-      "menuName": "Format Old 2",
-      "functionName": "FormatOld2"
-    }]
-  }
+  "exceptionLogging": "STACKDRIVER"
 }
