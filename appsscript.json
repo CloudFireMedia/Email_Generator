@@ -6,10 +6,13 @@
       "libraryId": "1oO44r3nax5MO1XsI1hlr4ZM0OtPVCQKgDYUe08ej_SkIKn9uvzZ6WKQl",
       "version": "10"
     }, {
-      "userSymbol": "EmailGenerator",
-      "libraryId": "1ykFe56uEIn8kUeXe_LNv5eJPFhKA-_P5rzT8TSr_Z9nsSsMVjsFCnEHO",
-      "version": "3",
-      "developmentMode": true
+      "userSymbol": "BBLog",
+      "libraryId": "1kzzYZhgODZluRmjsjh7t3O-ftmFAF9h1jaRHU0rOdf9irF0VUiJW33Kt",
+      "version": "13"
+    }, {
+      "userSymbol": "Assert",
+      "libraryId": "1R-rxUHuQU0ez95FlZz9fxqifbYFszHnukqzv_3Uk5zM3eG4eRBrh_E1M",
+      "version": "18"
     }]
   },
   "exceptionLogging": "STACKDRIVER"

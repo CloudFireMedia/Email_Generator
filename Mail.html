@@ -1,0 +1,374 @@
+<!--
+   
+   COMMENTS
+
+   1. Inclusion of redundant <span> elements
+      • Some mobile browsers will render the <p style="line-height:..."> property differently depending 
+        on whether or not a <span> element is included in the <p> container.  
+      • The script below generates HTML output that is intended to be manipulated by a beginner-level 
+        programmer. Therefore, we cannot anticipated whether or not the user will apply <span> elements 
+        to some <p> containers and not to others.
+      • To insure that styling is consistent across all <p> containers, the script below includes redundant 
+        <span style="background-color: transparent;"> elements inside all <p> containers.
+   
+   2. Inclusion of <a target="_blank" rel="nofollow noopener noreferrer"> attributes
+      • I added these for security purposes. Source: https://github.com/asciidoctor/asciidoctor/issues/2071 
+  
+   3. Removal of opt-out functionality
+      • The following code had previously generated email recipient opt-out functionality:
+        <p id= "FOOTER_OPT-OUT">
+        <span style="background-color: transparent;">
+        If you do not wish to receive emails about
+        < ?= content.footer.unsubscribe ?> at Christ Church Nashville, 
+        <a href="mailto:info@ccnash.org?subject=Unsubscribe%20me%20from%20< ?= content.footer.unsubscribe ?>%20emails">click here</a>. To unsubscribe from <strong>all</strong> our emails, click below.
+        </span>
+        </p>
+      • I removed the functionality at the request of Christ Church management. I saved the code by copying it above.
+        
+   4. Addition of functionality for trimming empty <p> elements from HTML output
+      • See line 364. It might be hacky, but it works! I'm not offended if it needs to be refactored.
+        
+        
+   --cdb 2019.10.02
+   
+-->
+
+
+<!doctype html>
+<html><head><link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet" /><link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet" /></head>
+<body>
+<div id="mail">
+<table border="0" cellspacing="0" cellpadding="0" align="center">
+  <tbody>
+     <tr>
+       <td style="vertical-align: center; padding: <?= content.header.img.top ?>px 20px <?= content.header.img.bottom ?>px; width: 100% !important; max-width: 600px !important; height: auto !important;" align="center" width="600">
+         <table id="HEADER IMAGE">
+           <tbody>
+             <tr>
+               <td style="vertical-align: center;">
+                 <a href="<?= content.header.img.link ?>" style="display: block; line-height: 100%; text-decoration: none; border: none; outline: none !important" target="_blank" rel="nofollow noopener noreferrer">
+                   <img style="width: 100% !important; max-width: <?= content.header.img.width ?>px !important; height: auto !important;" title="<?= content.header.img.title ?>" src="<?= content.header.img.src ?>" width="<?= content.header.img.width ?>" />
+                 </a>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? if (content.header.title.text != '') { ?>
+    <tr>
+       <td id="HEADER TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.header.title.top ?>px 20px <?= content.header.title.bottom ?>px;" width="600">
+          <p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; line-height: 150%; text-align: left; margin: 0 0 0px; padding: 0; font-size: 18px;"><span style="background-color: transparent;"><strong>
+
+<?= content.header.title.text ?>
+
+
+          </strong></span></p>
+
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_1_text.text != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_1 TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_1_text.top ?>px 20px <?= content.body.section_1_text.bottom ?>px;" width="600">
+         <? for (var i = 0; i < content.body.section_1_text.paragraphs.length; i++) {var paragraph = content.body.section_1_text.paragraphs[i]; ?><p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_1_text.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0; font-size: 15px;"><span style="background-color: transparent;"> 
+
+<?= paragraph ?>
+
+
+         </span></p><? } ?>
+
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_1_box.text != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_1_BOX TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_1_box.top ?>px 20px <?= content.body.section_1_box.bottom ?>px;" width="600">
+         <table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 530px !important; height: auto !important; background-color: #f4f1f4; padding: 20px 20px;" width="530">
+                 <? for (var i = 0; i < content.body.section_1_box.paragraphs.length; i++) {var paragraph = content.body.section_1_box.paragraphs[i]; ?><p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; font-size: 15px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_1_box.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><span style="background-color: transparent;">
+
+<?= paragraph ?>
+
+
+                 </span></p><? } ?>
+
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_1_img.src != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_1 IMAGE" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_1_img.top ?>px 20px <?= content.body.section_1_img.bottom ?>px;" align="center" width="600">
+         <table>
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: 0 0 0 0;" align="center" width="600">
+                 <a href="<?= content.body.section_1_img.link ?>" style="display: block; line-height: 100%; text-decoration: none; border: none; outline: none !important" target="_blank" rel="nofollow noopener noreferrer">
+                 <img style="width: 100% !important; max-width: <?= content.body.section_1_img.width ?>px !important; height: auto !important;" title="<?= content.body.section_1_img.title ?>" src="<?= content.body.section_1_img.src ?>"alt="<?= content.body.section_1_img.title ?>" width="<?= content.body.section_1_img.width ?>" border="0" />
+                 </a>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_2_text.text != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_2 TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_2_text.top ?>px 20px <?= content.body.section_2_text.bottom ?>px;" width="600">
+         <? for (var i = 0; i < content.body.section_2_text.paragraphs.length; i++) {var paragraph = content.body.section_2_text.paragraphs[i]; ?><p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_2_text.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0; font-size: 15px;"><span style="background-color: transparent;"> 
+
+<?= paragraph ?>
+
+
+         </span></p><? } ?>
+
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_2_box.text != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_2_BOX TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_2_box.top ?>px 20px <?= content.body.section_2_box.bottom ?>px;" width="600">
+         <table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 530px !important; height: auto !important; background-color: #f4f1f4; padding: 20px 20px;" width="530">
+                 <? for (var i = 0; i < content.body.section_2_box.paragraphs.length; i++) {var paragraph = content.body.section_2_box.paragraphs[i]; ?><p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; font-size: 15px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_2_box.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><span style="background-color: transparent;"> 
+
+<?= paragraph ?>
+
+
+                 </span></p><? } ?>
+
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_2_img.src != '') { ?>
+    <tr>
+       <td id="BODY_SECTION_2 IMAGE" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_2_img.top ?>px 20px <?= content.body.section_2_img.bottom ?>px;" align="center" width="600">
+         <table>
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: 0 0 0 0;" align="center" width="600">
+                 <a href="<?= content.body.section_2_img.link ?>" style="display: block; line-height: 100%; text-decoration: none; border: none; outline: none !important" target="_blank" rel="nofollow noopener noreferrer">
+                 <img style="width: 100% !important; max-width: <?= content.body.section_2_img.width ?>px !important; height: auto !important;" title="<?= content.body.section_2_img.title ?>" src="<?= content.body.section_2_img.src ?>"alt="<?= content.body.section_2_img.title ?>" width="<?= content.body.section_2_img.width ?>" border="0" />
+                 </a>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_3_text.text != '') { ?>
+    <tr>
+       <td id="BODY_SECTION_3 TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_3_text.top ?>px 20px <?= content.body.section_3_text.bottom ?>px;" width="600">
+         <? for (var i = 0; i < content.body.section_3_text.paragraphs.length; i++) {var paragraph = content.body.section_3_text.paragraphs[i]; ?> <p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_3_text.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0; font-size: 15px;"><span style="background-color: transparent;">
+
+<?= paragraph ?>
+
+
+         </span></p><? } ?>
+
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_3_box.text != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_3_BOX TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_3_box.top ?>px 20px <?= content.body.section_3_box.bottom ?>px;" width="600">
+         <table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 530px !important; height: auto !important; background-color: #f4f1f4; padding: 20px 20px;" width="530">
+                 <? for (var i = 0; i < content.body.section_3_box.paragraphs.length; i++) {var paragraph = content.body.section_3_box.paragraphs[i]; ?><p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; font-size: 15px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_3_box.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><span style="background-color: transparent;"> 
+
+<?= paragraph ?>
+
+
+                  </span></p><? } ?>
+
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_3_img.src != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_3 IMAGE" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_3_img.top ?>px 20px <?= content.body.section_3_img.bottom ?>px;" align="center" width="600">
+         <table>
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: 0 0 0 0;" align="center" width="600">
+                 <a href="<?= content.body.section_3_img.link ?>" style="display: block; line-height: 100%; text-decoration: none; border: none; outline: none !important" target="_blank" rel="nofollow noopener noreferrer">
+                 <img style="width: 100% !important; max-width: <?= content.body.section_3_img.width ?>px !important; height: auto !important;" title="<?= content.body.section_3_img.title ?>" src="<?= content.body.section_3_img.src ?>"alt="<?= content.body.section_3_img.title ?>" width="<?= content.body.section_3_img.width ?>" border="0" />
+                 </a>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_4_text.text != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_4 TEXT" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_4_text.top ?>px 20px <?= content.body.section_4_text.bottom ?>px;" width="600">
+         <? for (var i = 0; i < content.body.section_4_text.paragraphs.length; i++) {var paragraph = content.body.section_4_text.paragraphs[i]; ?><p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_4_text.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0; font-size: 15px;"><span style="background-color: transparent;"> 
+
+<?= paragraph ?>
+
+
+        </span></p><? } ?>
+
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_4_box.text != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_4_BOX" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_4_box.top ?>px 20px <?= content.body.section_4_box.bottom ?>px;" width="600">
+         <table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 530px !important; height: auto !important; background-color: #f4f1f4; padding: 20px 20px;" width="530">
+                 <? for (var i = 0; i < content.body.section_4_box.paragraphs.length; i++) {var paragraph = content.body.section_4_box.paragraphs[i]; ?><p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; font-size: 15px; line-height: 150%; text-align: left; margin: 0 0 <?= (i < (content.body.section_4_box.paragraphs.length - 1)) ? 15 : 0 ?>px; padding: 0;"><span style="background-color: transparent;"> 
+
+<?= paragraph ?>
+
+
+                 </span></p><? } ?>
+
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.body.section_4_img.src != '') { ?>
+     <tr>
+       <td id="BODY_SECTION_4 IMAGE" style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: <?= content.body.section_4_img.top ?>px 20px <?= content.body.section_4_img.bottom ?>px;" align="center" width="600">
+         <table>
+           <tbody>
+             <tr>
+               <td style="width: 100% !important; max-width: 600px !important; height: auto !important; padding: 0 0 0 0;" align="center" width="600">
+                 <a href="<?= content.body.section_4_img.link ?>" style="display: block; line-height: 100%; text-decoration: none; border: none; outline: none !important" target="_blank" rel="nofollow noopener noreferrer">
+                 <img style="width: 100% !important; max-width: <?= content.body.section_4_img.width ?>px !important; height: auto !important;" title="<?= content.body.section_4_img.title ?>" src="<?= content.body.section_4_img.src ?>"alt="<?= content.body.section_4_img.title ?>" width="<?= content.body.section_4_img.width ?>" border="0" />
+                 </a>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+<? } ?><? if (content.footer.staff.workers.length > 0) { ?>
+     <tr>
+       <td style="padding: <?= content.footer.staff.top ?>px 20px <?= content.footer.staff.bottom ?>px;">
+         <? for (var i = 0; i < content.footer.staff.workers.length; i++) {var employee = content.footer.staff.workers[i]; ?><table id="FOOTER_STAFF_SIGNATURE_#<?= (i + 1) ?>" border="0" cellspacing="0" cellpadding="0" style="margin: 0 0 <?= (i < (content.footer.staff.workers.length - 1)) ? 15 : 0 ?>px;">
+           <tbody>
+             <tr>
+               <td style="padding: 0;">
+                 <img src="<?= employee.photo ?>" title="<?= employee.title ?>"alt="<?= employee.title ?>" width="90" height="90" border="0" />
+               </td>
+               <td style="padding: 0 10px;" valign="center">
+                 <p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; font-size: 15px; font-weight: bold; line-height: 150%; text-align: left; margin: 0; padding: 0;"><span style="background-color: transparent;"> 
+
+<?= employee.name ?>
+
+
+                 </span></p>
+                 <p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; font-size: 15px; line-height: 150%; text-align: left; margin: 0; padding: 0;"><span style="background-color: transparent;"> 
+
+<?= employee.title ?>
+
+
+                 </span></p>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+<? } ?>
+       </td>
+     </tr>
+<? } ?>
+     <tr>
+       <td style="vertical-align: bottom; padding: 70px 0px 0px 0px; width: 100% !important; max-width: 600px !important;" align="center" width="600">
+         <table id="FOOTER_CLIENT_LOGO">
+           <tbody>
+             <tr>
+               <td style="vertical-align: bottom;">
+                 <img style="width: 100% !important; max-width: 27px !important;" title="" src="http://www.christchurchnashville.org/wp-content/uploads/2016/10/christchurch_logo_Black_JustCross.png" alt="" width="27" border="0" />
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top; padding: 0px 0px 0px; width: 100% !important; max-width: 600px !important;" align="center" width="600">
+         <table id="FOOTER_CLIENT_ADDRESS">
+           <tbody>
+             <tr>
+               <td style="vertical-align: top;">
+                 <p style="color: #484848; font-family: Lato, Lucida Grande, Lucida Sans Unicode, Tahoma, Sans-Serif; font-size: 13px; line-height: 150%; text-align: center; margin: 0; padding: 0;">
+                 <span style="background-color: transparent;"><strong>
+                 Christ Church Nashville
+                 </strong>
+                  <br />
+                  15354 Old Hickory Blvd
+                  <br />
+                  Nashville, TN 37211
+                  <br />
+                  (615) 834-6171
+                  <br />
+                  <a style="text-decoration: none; color: #2593d5; border: none; font-size: 13px; outline: none !important;" href="https://www.ccnash.org/" rel="nofollow noopener noreferrer" target="_blank">
+                  website
+                  </a>
+                 <strong>
+                 &middot;
+                 </strong> 
+                 <a style="text-decoration: none; color: #2593d5; border: none; font-size: 13px; outline: none !important;" href="https://www.facebook.com/christchurchnashville/" rel="nofollow noopener noreferrer" target="_blank">
+                 facebook
+                 </a> 
+                 <strong>
+                 &middot;
+                 </strong> 
+                 <a style="text-decoration: none; color: #2593d5; border: none; font-size: 13px; outline: none !important;" href="https://twitter.com/christchurchnsh" rel="nofollow noopener noreferrer" target="_blank">
+                 twitter
+                 </a> <strong>
+                 &middot;
+                 </strong> 
+                 <a style="text-decoration: none; color: #2593d5; border: none; font-size: 13px; outline: none !important;" href="https://www.instagram.com/christchurchnashville/" rel="nofollow noopener noreferrer" target="_blank">
+                 instagram
+                 </a>
+                 </span>
+                 </p>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </td>
+     </tr>
+  </tbody>
+</table>
+<p style="color: #FFFFFF;">
+                 this line intentionally blank
+                 </p>
+
+</div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#mail')
+        .summernote();
+      });
+      $('#mail p').each(function() {
+        if (/\S/.test($(this).text())) {
+          return;
+        } else {
+          $(this).remove();
+        }
+      });
+  </script>
+</body>
+</html>
