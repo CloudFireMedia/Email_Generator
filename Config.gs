@@ -28,7 +28,7 @@ var PRODUCTION_VERSION_ = false
 // -----------
 
 var DEBUG_LOG_LEVEL_ = PRODUCTION_VERSION_ ? BBLog.Level.INFO : BBLog.Level.FINER
-var DEBUG_LOG_DISPLAY_FUNCTION_NAMES_ = PRODUCTION_VERSION_ ? BBLog.DisplayFunctionNames.NO : BBLog.DisplayFunctionNames.YES
+var DEBUG_LOG_DISPLAY_FUNCTION_NAMES_ = PRODUCTION_VERSION_ ? BBLog.DisplayFunctionNames.NO : BBLog.DisplayFunctionNames.NO
 
 // Assert library
 // --------------
@@ -40,7 +40,7 @@ var ADMIN_EMAIL_ADDRESS_ = 'dev@cloudfire.media'
 // Tests
 // -----
 
-var TEST_SHEET_ID_ = ''
+var TEST_SHEET_ID_ = '1jSg7wPa_Yhz7XiLtH3Z5VM2x1ZCEh5Jah2VXtGlbAnQ'
 
 // Constants/Enums
 // ===============

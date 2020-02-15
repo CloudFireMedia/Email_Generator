@@ -44,6 +44,7 @@ var EVENT_HANDLERS_ = {
   hideOldColumns:            ['hideOldColumns()',            'Failed to hideOldColumns',              hideOldColumns_],
   showAllColumns:            ['showAllColumns()',            'Failed to showAllColumns',              showAllColumns_],
   removeEmptyColumns:        ['removeEmptyColumns()',        'Failed to removeEmptyColumns',          removeEmptyColumns_],
+  archiveCurrentColumn:      ['archiveCurrentColumn()',      'Failed to archiveCurrentColumn',        archiveCurrentColumn_],
 }
 
 function generateHtmlEmail(args)    {return eventHandler_(EVENT_HANDLERS_.generateHtmlEmail, args)}
@@ -54,6 +55,7 @@ function reformatSpreadsheet(args)  {return eventHandler_(EVENT_HANDLERS_.reform
 function hideOldColumns(args)       {return eventHandler_(EVENT_HANDLERS_.hideOldColumns, args)}
 function showAllColumns(args)       {return eventHandler_(EVENT_HANDLERS_.showAllColumns, args)}
 function removeEmptyColumns(args)   {return eventHandler_(EVENT_HANDLERS_.removeEmptyColumns, args)}
+function archiveCurrentColumn(args) {return eventHandler_(EVENT_HANDLERS_.archiveCurrentColumn, args)}
 
 // Private Functions
 // =================

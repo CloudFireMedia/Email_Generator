@@ -9,12 +9,11 @@ function addNewFieldsForInput_() {
   Log_.info('New fields added.')
 };
 
-
 function hideEmptyRows_() {
   var s = SpreadsheetApp.getActive().getSheetByName('Input');
   s.showRows(1, s.getMaxRows());
-  s.getRange('F:F').getValues().forEach( function (r, i) {
-    if (r[0] == '') s.hideRows(i + 1);
+  s.getRange('F:F').getValues().forEach(function (r, i) {
+    if (r[0] === '') s.hideRows(i + 1);
   });
 }
 
@@ -26,7 +25,7 @@ function showAllRows_() {
 
 function reformatSpreadsheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheets()[0];
+  var sheet = ss.getSheets()[0]; // "Input"
   var numColumns = sheet.getMaxColumns();  
   var numRows = sheet.getMaxRows();  
   sheet.getRange(1,1,numRows,numColumns).clearFormat();
@@ -67,4 +66,25 @@ function removeEmptyColumns_() {
       Log_.info('Deleted column: ' + i + 1)
     }  
   }
+}
+
+function archiveCurrentColumn_() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  var activeSheet = spreadsheet.getActiveSheet();
+  var activeRange = spreadsheet.getActiveRange();
+  var activeColumnNumber = activeRange.getColumn();
+  var numberOfRows = activeSheet.getLastRow();
+  var activeColumnRange = activeSheet.getRange(1, activeColumnNumber, numberOfRows, 1);
+  var activeColumnValues = activeColumnRange.getValues()  
+  var numberOfColumns = activeSheet.getLastColumn();
+  activeSheet.insertColumnAfter(numberOfColumns);
+  activeSheet.getRange(1, numberOfColumns + 1, numberOfRows, 1).setValues(activeColumnValues);
+  activeSheet.hideColumns(numberOfColumns + 1);
+  Log_.info('Added the values in the active column to the end of the columns and hid it')
+
+  activeColumnRange.clear();
+  spreadsheet.getRange('Format!F:F').copyTo(activeColumnRange, SpreadsheetApp.CopyPasteType.PASTE_FORMAT, false);
+  activeSheet.getRange(1, activeColumnNumber).setValue('YYYY.MM.DD');
+  activeSheet.getRange(3, activeColumnNumber).setValue('Email Subject');   
+  Log_.info('Cleared the contents of the active column and pasted in the default format')
 }
